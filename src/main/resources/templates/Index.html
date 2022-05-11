@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartOffer - Inicio</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <div id="main_container">
+        <label class="index_title"><h1> Bienvenido a SmartOffer </h1></label>
+        <div class="nav_container">
+            <nav id="index_menu">
+                <ul>
+                    <li th:class="${activePage == 'Index'} ? 'nav-item active' : 'nav-item'">
+                        <a th:href="@{/}">Inicio</a>
+                    </li>
+                    <li th:class="${activePage == 'Login'} ? 'nav-item active' : 'nav-item'">
+                        <a th:href="@{/Login}">Iniciar Sesion</a>
+                    </li>
+                    <li th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
+                        <a th:href="@{/Register}">Registrarse</a>
+                    </li>
+                    <li th:class="${activePage == 'Aboutus'} ? 'nav-item active' : 'nav-item'">
+                        <a th:href="@{/Aboutus}">Sobre Nosotros</a>
+                    </li>
+                    <li th:class="${activePage == 'Contact'} ? 'nav-item active' : 'nav-item'">
+                        <a th:href="@{/Contact}">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <hr />
+    </div>
+</body>
+</html>
