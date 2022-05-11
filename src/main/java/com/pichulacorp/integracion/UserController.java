@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -23,7 +23,6 @@ public class UserController {
         } catch (DataAccessException e) {
             logger.error("Se fue a la chucha", e);
         }
-
         return "redirect:/";
 
     }
