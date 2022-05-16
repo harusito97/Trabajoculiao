@@ -70,8 +70,11 @@ form input[type=submit]{
 }
 
 #form_container{
-    margin: auto;
-    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+#form_container form {
+    padding: 1em;
     text-align: center;
     border: 1px solid orange;
     border-radius: 5px;

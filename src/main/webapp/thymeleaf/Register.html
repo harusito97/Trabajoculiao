@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:form="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>SmartOffer - Sobre Nosotros</title>
+    <title>SmartOffer - Registro</title>
     <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
@@ -12,12 +12,12 @@
             <nav id="index_menu">
                 <ul>
                     <li th:class="${activePage == 'Index'} ? 'nav-item active' : 'nav-item'">
-                        <a th:href="@{/}">Inicio</a>
+                        <a th:href="@{/static}">Inicio</a>
                     </li>
                     <li th:class="${activePage == 'Login'} ? 'nav-item active' : 'nav-item'">
                         <a th:href="@{/Login}">Iniciar Sesion</a>
                     </li>
-                    <li th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
+                    <li th:class="${activePage == '/Register'} ? 'nav-item active' : 'nav-item'">
                         <a th:href="@{/Register}">Registrarse</a>
                     </li>
                     <li th:class="${activePage == 'Aboutus'} ? 'nav-item active' : 'nav-item'">
@@ -28,6 +28,18 @@
                     </li>
                 </ul>
             </nav>
+        </div>
+        <div id="form_container">
+            <h2>
+                Registration
+            </h2>
+            <form action="#" th:action="@{/Register}" th:object="${user}" method="post">
+                <p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+                <p>Rut: <input type="text" th:field="*{rut}" /></p>
+                <p>Telefono: <input type="text" th:field="*{telefono}" /></p>
+                <p>Email: <input type="text" th:field="*{email}" /></p>
+                <p><input type="submit" value="Registrar" /> <input type="Submit" value="Reset" /></p>
+            </form>
         </div>
         <hr />
     </div>
