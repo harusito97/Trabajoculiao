@@ -47,9 +47,14 @@ a:visited{
     color: orange;
 }
 
-form p, form input{
+form p, form input {
     height: 24px;
     font-size: 20px;
+    text-align: right;
+}
+
+.paladerecha{
+    margin-right: 5%;
 }
 
 form input[type=text]{
@@ -62,4 +67,21 @@ form input[type=submit]{
     background-color: #FFA500FF;
     border: 1px solid orange;
     border-radius: 5px;
+}
+
+#form_container{
+    margin: auto;
+    width: 25%;
+    text-align: center;
+    border: 1px solid orange;
+    border-radius: 5px;
+}
+
+.centrado{
+    text-align: center;
+    margin: 0;
+}
+
+h1{
+    text-align: center;
 }
