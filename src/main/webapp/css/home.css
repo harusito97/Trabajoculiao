@@ -57,7 +57,7 @@ form p, form input {
     margin-right: 5%;
 }
 
-form input[type=text]{
+form input[type=text], form input[type=password]{
     background-color: #1B1F23;
     border: 1px solid orange;
     border-radius: 5px;
