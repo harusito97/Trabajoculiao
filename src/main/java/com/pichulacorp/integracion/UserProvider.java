@@ -18,7 +18,7 @@ public class UserProvider implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        String sql = "SELECT rut,password FROM Cliente WHERE rut=?";
+        String sql = "SELECT rut,pwd FROM Cliente WHERE rut=?";
         return jdbcTemplate.queryForObject(sql,new UserMapper(),username);
     }
 
@@ -26,7 +26,7 @@ public class UserProvider implements UserDetailsService {
 
         @Override
         public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
-            User user = new User(rs.getString("rut"), rs.getString("password"));
+            User user = new User(rs.getString("rut"), rs.getString("pwd"));
             return user;
         }
     }
