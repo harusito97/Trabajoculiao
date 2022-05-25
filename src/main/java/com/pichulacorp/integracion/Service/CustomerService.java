@@ -3,6 +3,7 @@ package com.pichulacorp.integracion.Service;
 import com.pichulacorp.integracion.Entity.Customer;
 import com.pichulacorp.integracion.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,10 @@ public class CustomerService {
     @Autowired
     private CustomerRepository repository;
 
-    public Customer saveUser(Customer customer){
+    public Customer saveUser(Customer customer) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encodedpw = bCryptPasswordEncoder.encode(customer.getPwd());
+        customer.setPwd(encodedpw);
         return repository.save(customer);
     }
 

@@ -9,4 +9,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     Optional<Customer> findByRut(String rut);
 
+    Customer getCustomerByRut(String rut);
+
 }

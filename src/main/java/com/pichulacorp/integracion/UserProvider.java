@@ -1,6 +1,8 @@
 package com.pichulacorp.integracion;
 
 
+import com.pichulacorp.integracion.Entity.Customer;
+import com.pichulacorp.integracion.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -15,23 +17,13 @@ public class UserProvider implements UserDetailsService {
 
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private CustomerRepository repository;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        String sql = "SELECT rut,pwd FROM Cliente WHERE rut=?";
-        return jdbcTemplate.queryForObject(sql,new UserMapper(),username);
+        Customer customer = repository.getCustomerByRut(username);
+        return new CustomerDetails(customer);
     }
-
-
-    static class UserMapper implements RowMapper<UserDetails> {
-
-        @Override
-        public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
-            User user = new User(rs.getString("rut"), rs.getString("pwd"));
-            return user;
-        }
-    }
-
 
 }

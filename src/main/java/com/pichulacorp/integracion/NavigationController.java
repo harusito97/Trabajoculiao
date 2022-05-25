@@ -37,7 +37,7 @@ public class NavigationController {
     @GetMapping("/Register")
     public String getRegister(Model model){
         model.addAttribute("Active Page", "Register");
-        model.addAttribute("user", new Customer());
+        model.addAttribute("customer", new Customer());
         return "Register";
     }
 
