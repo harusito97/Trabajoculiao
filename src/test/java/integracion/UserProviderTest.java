@@ -1,4 +1,4 @@
-package com.pichulacorp.integracion;
+package integracion;
 
 import groovyjarjarantlr4.v4.codegen.model.SrcOp;
 import org.junit.jupiter.api.Test;
