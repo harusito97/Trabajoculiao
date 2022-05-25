@@ -33,21 +33,21 @@ public class CustomerController {
             return modelAndView;
         }
     }
-    @PostMapping("/Login")
-    public ModelAndView loginCustomer(String account, String pwd){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        try {
-            Customer customer = service.getUserByRut(account);
-            if (bCryptPasswordEncoder.matches(pwd, customer.getPwd())) return new ModelAndView("redirect:/");
-            else return new ModelAndView("redirect:/Login");
-        }catch (DataAccessException e){
-            logger.error("Se fue a la chucha", e);
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("Error");
-            modelAndView.addObject("error", e.getMessage());
-            return modelAndView;
-        }
-    }
+//    @PostMapping("/Login")
+//    public ModelAndView loginCustomer(String account, String pwd){
+//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//        try {
+//            Customer customer = service.getUserByRut(account);
+//            if (bCryptPasswordEncoder.matches(pwd, customer.getPwd())) return new ModelAndView("redirect:/");
+//            else return new ModelAndView("redirect:/Login");
+//        }catch (DataAccessException e){
+//            logger.error("Se fue a la chucha", e);
+//            ModelAndView modelAndView = new ModelAndView();
+//            modelAndView.setViewName("Error");
+//            modelAndView.addObject("error", e.getMessage());
+//            return modelAndView;
+//        }
+//    }
 
 
 }
