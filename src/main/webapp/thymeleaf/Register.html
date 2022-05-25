@@ -5,14 +5,14 @@
 </head>
 <body>
         <div id="form_container" layout:fragment="content">
-            <form th:action="@{/Register}" th:object="${user}" method="post">
+            <form th:action="@{/Register}" th:object="${customer}" method="post">
                 <h2>
                     Registration
                 </h2>
                 <p>Nombre: <input type="text" th:field="*{name}" /></p>
                 <p>Password: <input type="password" th:field="*{pwd}" /></p>
                 <p>Rut: <input type="text" th:field="*{rut}" /></p>
-                <p>Telefono: <input type="text" th:field="*{telefono}" /></p>
+                <p>Telefono: <input type="text" th:field="*{phone}" /></p>
                 <p>Email: <input type="text" th:field="*{email}" /></p>
                 <p><input type="submit" value="Registrar" /> <input type="Submit" value="Reset" /></p>
             </form>

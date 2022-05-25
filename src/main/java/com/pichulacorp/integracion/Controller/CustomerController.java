@@ -1,30 +1,28 @@
 package com.pichulacorp.integracion.Controller;
 
 
-import com.pichulacorp.integracion.Entity.User;
-import com.pichulacorp.integracion.Service.UserService;
+import com.pichulacorp.integracion.Entity.Customer;
+import com.pichulacorp.integracion.Service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class UserController {
+public class CustomerController {
 
 
-    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final Logger logger = LoggerFactory.getLogger(CustomerController.class);
     @Autowired
-    private UserService service;
+    private CustomerService service;
 
     @PostMapping( "/Register")
-    public ModelAndView addUser(User user){
+    public ModelAndView addUser(Customer customer){
         try {
-            service.saveUser(user);
+            service.saveUser(customer);
             return new ModelAndView("redirect:/Login");
         }catch(DataAccessException e){
             logger.error("Se fue a la chucha", e);

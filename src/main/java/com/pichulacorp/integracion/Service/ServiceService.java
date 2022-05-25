@@ -2,16 +2,16 @@ package com.pichulacorp.integracion.Service;
 
 
 import com.pichulacorp.integracion.Entity.Service;
-import com.pichulacorp.integracion.Repository.ServicesRepository;
+import com.pichulacorp.integracion.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class ServicesService {
+public class ServiceService {
 
     @Autowired
-    private ServicesRepository repository;
+    private ServiceRepository repository;
 
     public Service saveService(Service service){
         return repository.save(service);

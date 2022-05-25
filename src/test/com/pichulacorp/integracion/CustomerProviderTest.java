@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class UserProviderTest {
+class CustomerProviderTest {
 
     @Test
     public void probarUnaWea(){

@@ -1,7 +1,7 @@
 package com.pichulacorp.integracion.Entity;
 
-import com.pichulacorp.integracion.Service.ServicesService;
-import com.pichulacorp.integracion.Service.UserService;
+import com.pichulacorp.integracion.Service.ServiceService;
+import com.pichulacorp.integracion.Service.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,29 +12,30 @@ import java.util.List;
 class ServiceTest {
 
     @Autowired
-    public UserService traealweon;
+    public CustomerService traealweon;
     @Autowired
-    public ServicesService traeelservicio;
+    public ServiceService traeelservicio;
 
 
     @Test
     public void probarEntidadServicio() {
 
-        User usuarioTest = new User();
+        Customer usuarioTest = new Customer();
         usuarioTest.setName("Alejandro");
         usuarioTest.setLastname("Jarpa");
         usuarioTest.setPwd("123123");
         usuarioTest.setRut("19534382-9");
         usuarioTest.setEmail("conchetuamre@gmail.com");
-        usuarioTest.setTelefono("123123123");
+        usuarioTest.setPhone("123123123");
         traealweon.saveUser(usuarioTest);
 
         Service service = new Service();
         service.setName("Aweonao");
         service.setDirection("micasa");
-        service.setTelefono("123123123");
-        User user = traealweon.getUserByRut("19534382-9");
-        service.setOwner(user);
+        service.setPhone("123123123");
+        service.setEmail("micasa@gmail.com");
+        Customer customer = traealweon.getUserByRut("19534382-9");
+        service.setOwner(customer);
         traeelservicio.saveService(service);
 
 //        System.out.println(user);

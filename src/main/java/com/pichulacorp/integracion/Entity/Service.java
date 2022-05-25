@@ -6,12 +6,18 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "Servicio")
 @Getter
 @Setter
 @ToString(exclude = {"owner"})
+@Table(name = "Service")
 public class Service {
 
     @Id
@@ -28,20 +34,21 @@ public class Service {
 
     @NotBlank
     @NotNull
-    private String telefono;
+    private String phone;
+
+    @NotNull
+    @NotBlank
+    @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$",
+            message = "Email Invalido")
+    private String email;
 
     @ManyToOne
     @JoinColumn(name = "ownerrut", nullable = false)
-    private User owner; //RUT DEL DUEÑO
+    private Customer owner; //RUT DEL DUEÑO
 
-    public Service(String name, String direction, String telefono, User owner) {
-        this.name = name;
-        this.direction = direction;
-        this.telefono = telefono;
-        this.owner = owner;
-    }
+    @OneToMany(mappedBy = "reservedservice", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reservation> reservation = new ArrayList<>();
 
-    public Service() {
-
-    }
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Plan> plan = new ArrayList<>();
 }

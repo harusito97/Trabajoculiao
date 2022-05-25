@@ -1,8 +1,8 @@
 package com.pichulacorp.integracion;
 
+import com.pichulacorp.integracion.Entity.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.pichulacorp.integracion.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -37,7 +37,7 @@ public class NavigationController {
     @GetMapping("/Register")
     public String getRegister(Model model){
         model.addAttribute("Active Page", "Register");
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new Customer());
         return "Register";
     }
 
