@@ -17,6 +17,14 @@ public class UserService {
         return repository.save(user);
     }
 
+    public User getUserById(int id){
+        return repository.findById(id).orElse(null);
+    }
+
+    public User getUserByRut(String rut){
+        return repository.findByRut(rut).orElse(null);
+    }
+
     public List<User> getUsers(){
         return repository.findAll();
     }
@@ -27,7 +35,7 @@ public class UserService {
     }
 
     public User updateUser(User user){
-        User actualUser=repository.findById(user.getId()).orElse(null);
+        User actualUser=repository.findById(user.getId()).orElse(user);
         actualUser.setName(user.getName());
         actualUser.setLastname(user.getLastname());
         actualUser.setPwd(user.getPwd());

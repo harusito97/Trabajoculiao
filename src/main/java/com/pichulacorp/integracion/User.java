@@ -1,4 +1,4 @@
-/*
+
 package com.pichulacorp.integracion;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -94,4 +94,3 @@ public class User implements Serializable, UserDetails {
 
 
 
-*/

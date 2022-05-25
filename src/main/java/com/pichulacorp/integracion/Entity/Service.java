@@ -2,21 +2,20 @@ package com.pichulacorp.integracion.Entity;
 
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import lombok.Data;
-import lombok.Generated;
-import net.bytebuddy.description.modifier.Ownership;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Servicio")
-public class Services {
+@Getter
+@Setter
+@ToString(exclude = {"owner"})
+public class Service {
 
     @Id
     @GeneratedValue
-    @NotBlank
-    @NotNull
     private int id;
 
     @NotBlank
@@ -35,14 +34,14 @@ public class Services {
     @JoinColumn(name = "ownerrut", nullable = false)
     private User owner; //RUT DEL DUEÑO
 
-    public Services(String name, String direction, String telefono, User owner) {
+    public Service(String name, String direction, String telefono, User owner) {
         this.name = name;
         this.direction = direction;
         this.telefono = telefono;
         this.owner = owner;
     }
 
-    public Services() {
+    public Service() {
 
     }
 }

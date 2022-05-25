@@ -2,31 +2,22 @@ package com.pichulacorp.integracion.Entity;
 
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.SessionFactory;
-import org.hibernate.annotations.Type;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.UniqueElements;
+import lombok.*;
 
-import javax.imageio.spi.ServiceRegistry;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Setter
+@Getter
+@ToString(exclude = {"services"})
 @Table(name = "Cliente")
 public class User {
 
@@ -50,7 +41,8 @@ public class User {
     @NotNull
     @NotBlank
     @Size(min = 9, max = 12)
-    @Pattern(regexp = "^([0-9]{1,2})+(\\.{0,1})+([0-9]{3})+(\\.{0,1})+([0-9]{3})+(\\-{0,1})+([0-9kK]{1})$")
+    @Column(unique = true)
+//    @Pattern(regexp = "^([0-9]{1,2})+(\\.{0,1})+([0-9]{3})+(\\.{0,1})+([0-9]{3})+(\\-{0,1})+([0-9kK]{1})$")
     private String rut;
 
     @NotNull
@@ -64,9 +56,9 @@ public class User {
     private String telefono;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Services> service = new ArrayList<>();
+    private List<Service> services = new ArrayList<>();
 
-    public void setService(List<Services> service) {
-        this.service = service;
+    public void setService(List<Service> service) {
+        this.services = service;
     }
 }
