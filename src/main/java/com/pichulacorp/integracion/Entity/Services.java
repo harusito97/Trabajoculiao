@@ -10,7 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Data
 @Table(name = "Servicio")
 public class Services {
 
@@ -32,7 +31,6 @@ public class Services {
     @NotNull
     private String telefono;
 
-
     @ManyToOne
     @JoinColumn(name = "ownerrut", nullable = false)
     private User owner; //RUT DEL DUEÑO
@@ -42,5 +40,9 @@ public class Services {
         this.direction = direction;
         this.telefono = telefono;
         this.owner = owner;
+    }
+
+    public Services() {
+
     }
 }

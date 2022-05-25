@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -63,7 +63,7 @@ public class User {
     @NotBlank
     private String telefono;
 
-    @OneToMany(mappedBy = "User", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Services> service = new ArrayList<>();
 
     public void setService(List<Services> service) {
