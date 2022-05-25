@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -34,6 +36,9 @@ public class Reservation {
     @NotBlank
     @NotNull
     private String enddate; // fecha termino de servicio
+
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
 
     //
 

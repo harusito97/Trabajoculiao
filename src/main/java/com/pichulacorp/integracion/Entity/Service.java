@@ -51,4 +51,7 @@ public class Service {
 
     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Plan> plan = new ArrayList<>();
+
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> review = new ArrayList<>();
 }

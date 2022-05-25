@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -39,9 +36,13 @@ public class Review {
     @Max(value = 5, message = "las valoraciones son de 1 a 5")
     private int valoration; // 1 - 5
 
+    @ManyToOne
+    @JoinColumn(name = "atreservation", nullable = false)
+    private Reservation reservation; // reserva en cuestion
 
-    private String atreservation; // reserva adjunta
-    private String atservice; // servicio en cuestion
+    @ManyToOne
+    @JoinColumn(name = "atservice", nullable = false)
+    private Service service; // servicio en cuestion
 
 
 
