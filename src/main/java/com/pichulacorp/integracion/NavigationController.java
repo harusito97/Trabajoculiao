@@ -30,7 +30,6 @@ public class NavigationController {
     @GetMapping("/Login")
     public String getLogin(Model model){
         model.addAttribute("Active Page","Login");
-
         return "Login";
     }
 
