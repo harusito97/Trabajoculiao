@@ -37,11 +37,6 @@
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
-            <artifactId>mysql-connector-mxj-db-files</artifactId>
-            <version>5.0.12</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
@@ -76,6 +71,30 @@
                 <configuration>
                     <mainClass>com.pichulacorp.integracion.IntegracionApplication</mainClass>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>clean-jar-artifacts</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                            <filesets>
+                                <fileset>
+                                    <directory>target</directory>
+                                    <excludes>
+                                        <exclude>*.war</exclude>
+                                    </excludes>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
