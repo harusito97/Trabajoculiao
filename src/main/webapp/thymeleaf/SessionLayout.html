@@ -18,10 +18,10 @@
                     <a th:href="@{/CustomerServices}">Mis Servicios</a>
                 </li>
                 <li th:class="${activePage == 'CustomerReports'} ? 'nav-item active' : 'nav-item'">
-                    <a th:href="@{/CustomerReports}">Reportes</a>
+                    <a th:href="@{/CustomerReports}">Mis Reportes</a>
                 </li>
                 <li th:class="${activePage == 'CustomerProfile'} ? 'nav-item active' : 'nav-item'">
-                    <a th:href="@{/CustomerProfile}">//{Nombre del usuario}//</a>
+                    <a th:href="@{/CustomerProfile}" th:text="${customer.getName()}+' '+${customer.getLastname()}"></a>
                 </li>
                 <li th:class="${activePage == 'Logout'} ? 'nav-item active' : 'nav-item'">
                     <a th:href="@{/Logout}">Cerrar Sesion</a>
