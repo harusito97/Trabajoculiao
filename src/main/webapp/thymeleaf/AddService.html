@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html layout:decorate="~{SessionLayout}">
+<head>
+    <title>SmartOffer - Agregar Servicio</title>
+</head>
+<body>
+<div id="main_container" layout:fragment="content">
+    <h1>SMART OFFER APP - ADMIN</h1>
+    <hr/>
+    <div id="form_container">
+        <form th:action="@{/AddService}" th:object="${service}" method="post">
+            <h2>Agregar Servicio</h2>
+                <p>Nombre: <input type="text" th:field="*{name}" /></p>
+                <p>Dirección: <input type="text" th:field="*{address}" /></p>
+                <p>Telefono: <input type="text" th:field="*{phone}" /></p>
+                <p>Email: <input type="text" th:field="*{email}" /></p>
+                <p><input type="submit" value="Agregar" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
+    <hr/>
+</div>
+</body>
+</html>

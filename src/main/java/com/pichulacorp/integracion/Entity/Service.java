@@ -30,7 +30,7 @@ public class Service {
 
     @NotBlank
     @NotNull
-    private String direction;
+    private String address;
 
     @NotBlank
     @NotNull
@@ -43,8 +43,8 @@ public class Service {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "ownerrut", nullable = false)
-    private Customer owner; //RUT DEL DUEÑO
+    @JoinColumn(name = "ownerid", nullable = false)
+    private Customer owner; //id del dueño
 
     @OneToMany(mappedBy = "reservedservice", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservation = new ArrayList<>();

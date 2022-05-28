@@ -24,7 +24,7 @@ public class NavigationController {
         model.addAttribute("Active Page","Index");
 //        String sql = "INSERT INTO Usuario (nombre, email, rut, telefono) VALUES (?, ?, ?, ?)";
 //        jdbcTemplate.update(sql, "Juanito", "juanito@juanito.juanito", "12345678-9", "1111111");
-        return "/Index";
+        return "Index";
     }
 
     @GetMapping("/Login")

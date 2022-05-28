@@ -21,9 +21,9 @@ public class CustomerController {
     private CustomerService service;
 
     @PostMapping( "/Register")
-    public ModelAndView addUser(Customer customer){
+    public ModelAndView addCustomer(Customer customer){
         try {
-            service.saveUser(customer);
+            service.saveCustomer(customer);
             return new ModelAndView("redirect:/Login");
         }catch(DataAccessException e){
             logger.error("Se fue a la chucha", e);

@@ -27,11 +27,11 @@ class ServiceTest {
         usuarioTest.setRut("19534382-9");
         usuarioTest.setEmail("conchetuamre@gmail.com");
         usuarioTest.setPhone("123123123");
-        traealweon.saveUser(usuarioTest);
+        traealweon.saveCustomer(usuarioTest);
 
         Service service = new Service();
         service.setName("Aweonao");
-        service.setDirection("micasa");
+        service.setAddress("micasa");
         service.setPhone("123123123");
         service.setEmail("micasa@gmail.com");
         Customer customer = traealweon.getUserByRut("19534382-9");

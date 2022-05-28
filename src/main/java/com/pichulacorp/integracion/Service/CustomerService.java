@@ -14,7 +14,7 @@ public class CustomerService {
     @Autowired
     private CustomerRepository repository;
 
-    public Customer saveUser(Customer customer) {
+    public Customer saveCustomer(Customer customer) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encodedpw = bCryptPasswordEncoder.encode(customer.getPwd());
         customer.setPwd(encodedpw);
