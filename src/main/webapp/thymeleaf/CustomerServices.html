@@ -7,6 +7,35 @@
 <div class="contact-container" layout:fragment="content">
   My Services
   <a th:href="@{'/AddService'}">Agregar Servicio</a>
+  <table>
+    <thead>
+      <th> Servicio </th>
+      <th> Direccion </th>
+      <th> Email </th>
+      <th> Phone </th>
+    </thead>
+    <tbody>
+      <tr th:if="${not #strings.isEmpty(myservices)}">
+        <td>
+          No existe ningun servicio.
+        </td>
+      </tr>
+      <tr th:each="Service : ${myservices}">
+        <td>
+          <span th:text="${myservices.name}"></span>
+        </td>
+        <td>
+          <span th:text="${myservices.address}"></span>
+        </td>
+        <td>
+          <span th:text="${myservices.email}"></span>
+        </td>
+        <td>
+          <span th:text="${myservices.phone}"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 </body>
 </html>

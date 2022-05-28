@@ -43,6 +43,7 @@ class ServiceTest {
         List<Service> serviceByOwnerRut = traeelservicio.getServiceByOwnerRut("19534382-9");
         System.out.println(serviceByOwnerRut);
         System.out.println(serviceByOwnerRut.get(0).getOwner());
+        System.out.println(traeelservicio.getAllMyServices(usuarioTest));
 
     }
 }

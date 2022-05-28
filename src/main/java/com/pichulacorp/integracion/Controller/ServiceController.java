@@ -1,6 +1,7 @@
 package com.pichulacorp.integracion.Controller;
 
 import com.pichulacorp.integracion.CustomerDetails;
+import com.pichulacorp.integracion.Entity.Customer;
 import com.pichulacorp.integracion.Entity.Service;
 import com.pichulacorp.integracion.Service.ServiceService;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ public class ServiceController {
     public String getAddService(Model model, @AuthenticationPrincipal CustomerDetails customer, Service service){
         model.addAttribute("activePage","AddService");
         model.addAttribute("customer",customer.getCustomer());
+        model.addAttribute("myservices", myservice.getServices());
         return "AddService";
     }
 

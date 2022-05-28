@@ -1,6 +1,7 @@
 package com.pichulacorp.integracion.Service;
 
 
+import com.pichulacorp.integracion.Entity.Customer;
 import com.pichulacorp.integracion.Entity.Service;
 import com.pichulacorp.integracion.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +26,7 @@ public class ServiceService {
         return repository.findAll();
     }
 
+    public List<Service> getAllMyServices(Customer customer) {
+        return repository.findAllMyServicesByOwner(customer);
+    }
 }
