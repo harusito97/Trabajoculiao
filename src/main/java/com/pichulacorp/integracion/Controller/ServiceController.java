@@ -28,7 +28,6 @@ public class ServiceController {
     public String getAddService(Model model, @AuthenticationPrincipal CustomerDetails customer, Service service){
         model.addAttribute("activePage","AddService");
         model.addAttribute("customer",customer.getCustomer());
-        model.addAttribute("myservices", myservice.getServices());
         return "AddService";
     }
 

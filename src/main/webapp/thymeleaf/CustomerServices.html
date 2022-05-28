@@ -15,23 +15,23 @@
       <th> Phone </th>
     </thead>
     <tbody>
-      <tr th:if="${not #strings.isEmpty(myservices)}">
+      <tr th:if="${#lists.isEmpty(myservices)}">
         <td>
           No existe ningun servicio.
         </td>
       </tr>
-      <tr th:each="Service : ${myservices}">
+      <tr th:each="service : ${myservices}">
         <td>
-          <span th:text="${myservices.name}"></span>
+          <span th:text="${service.name}"></span>
         </td>
         <td>
-          <span th:text="${myservices.address}"></span>
+          <span th:text="${service.address}"></span>
         </td>
         <td>
-          <span th:text="${myservices.email}"></span>
+          <span th:text="${service.email}"></span>
         </td>
         <td>
-          <span th:text="${myservices.phone}"></span>
+          <span th:text="${service.phone}"></span>
         </td>
       </tr>
     </tbody>
