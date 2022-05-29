@@ -55,7 +55,8 @@ public class Customer {
     @NotBlank
     private String phone;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Service> services = new ArrayList<>();
 
     public void setService(List<Service> service) {

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -38,7 +39,31 @@ public class Plan {
 
     @NotBlank
     @NotNull
-    private String availability; // dias en los que el plan es efectivo dentro del servicio
+    private Boolean availableMonday = true;
+
+    @NotBlank
+    @NotNull
+    private Boolean availableTuesday = true;
+
+    @NotBlank
+    @NotNull
+    private Boolean availableWednesday = true;
+
+    @NotBlank
+    @NotNull
+    private Boolean availableThursday = true;
+
+    @NotBlank
+    @NotNull
+    private Boolean availableFriday = true;
+
+    @NotBlank
+    @NotNull
+    private Boolean availableSaturday = true;
+
+    @NotBlank
+    @NotNull
+    private Boolean availableSunday = true;
 
     @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();

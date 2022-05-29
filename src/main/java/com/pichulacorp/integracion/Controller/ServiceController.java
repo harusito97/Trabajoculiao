@@ -25,9 +25,10 @@ public class ServiceController {
     private ServiceService myservice;
 
     @GetMapping("/AddService")
-    public String getAddService(Model model, @AuthenticationPrincipal CustomerDetails customer, Service service){
+    public String getAddService(Model model, @AuthenticationPrincipal CustomerDetails customer){
         model.addAttribute("activePage","AddService");
         model.addAttribute("customer",customer.getCustomer());
+        model.addAttribute("service", new Service());
         return "AddService";
     }
 

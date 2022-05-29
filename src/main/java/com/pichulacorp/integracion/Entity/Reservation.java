@@ -9,7 +9,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,15 +30,15 @@ public class Reservation {
 
     @NotBlank
     @NotNull
-    private String date; // fecha en que se realizo la reserva
+    private ZonedDateTime date; // fecha en que se realizo la reserva
 
     @NotBlank
     @NotNull
-    private String startdate; // fecha comienzo de servicio
+    private ZonedDateTime startdate; // fecha comienzo de servicio
 
     @NotBlank
     @NotNull
-    private String enddate; // fecha termino de servicio
+    private ZonedDateTime enddate; // fecha termino de servicio
 
     @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
@@ -48,10 +51,10 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "service", nullable = false)
-    private Service reservedservice; // servicio contratado
+    private Service service; // servicio contratado
 
     @ManyToOne
-    @JoinColumn(name = "usedplan", nullable = false)
+    @JoinColumn(name = "plan", nullable = false)
     private Plan plan; // El plan del servicio el cual fue contratado
 
     //

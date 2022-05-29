@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html layout:decorate="~{SessionLayout}">
+<head>
+    <title>SmartOffer - Inicio</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <table>
+        <thead>
+        <tr>
+            <th>Servicio</th>
+            <th>Reservas</th>
+            <th>Dinero Obtenido</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="servicio : ${reportData.getServiceReports()}">
+            <td th:text="${servicio.name}"></td>
+            <td th:text="${servicio.reservas}"></td>
+            <td th:text="${servicio.plata}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+        <tr>
+            <th>Total Reservas</th>
+            <th>Total Dinero Obtenido</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${reportData.getReservastotal()}"></td>
+            <td th:text="${reportData.getPlatatotal()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

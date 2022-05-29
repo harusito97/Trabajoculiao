@@ -46,7 +46,7 @@ public class Service {
     @JoinColumn(name = "ownerid", nullable = false)
     private Customer owner; //id del dueño
 
-    @OneToMany(mappedBy = "reservedservice", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservation = new ArrayList<>();
 
     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
