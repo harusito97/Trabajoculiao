@@ -13,4 +13,7 @@ public interface ServiceRepository extends JpaRepository<Service, Integer> {
     List<Service> findByOwnerRut(String rut);
 
     List<Service> findAllMyServicesByOwner(Customer customer);
+
+    Service findServiceById(int id);
+
 }

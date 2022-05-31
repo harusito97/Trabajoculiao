@@ -25,7 +25,6 @@ public class Plan {
     @GeneratedValue
     private int id;
 
-    @NotBlank
     @NotNull
     private float price;
 
@@ -37,31 +36,24 @@ public class Plan {
     @NotNull
     private String description;
 
-    @NotBlank
     @NotNull
     private Boolean availableMonday = true;
 
-    @NotBlank
     @NotNull
     private Boolean availableTuesday = true;
 
-    @NotBlank
     @NotNull
     private Boolean availableWednesday = true;
 
-    @NotBlank
     @NotNull
     private Boolean availableThursday = true;
 
-    @NotBlank
     @NotNull
     private Boolean availableFriday = true;
 
-    @NotBlank
     @NotNull
     private Boolean availableSaturday = true;
 
-    @NotBlank
     @NotNull
     private Boolean availableSunday = true;
 

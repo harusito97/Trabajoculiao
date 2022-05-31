@@ -3,6 +3,8 @@
     color: white;
 }
 
+
+
 body{
     height: 100%;
     background-color: #2B2B2B;
@@ -47,6 +49,16 @@ a:visited{
     color: orange;
 }
 
+a{
+    color: orange;
+    text-decoration: none;
+}
+
+td{
+    text-align: center;
+}
+
+
 form p, form input {
     height: 24px;
     font-size: 20px;
@@ -57,7 +69,7 @@ form p, form input {
     margin-right: 5%;
 }
 
-form input[type=text], form input[type=password]{
+form input[type=text], form input[type=password], form input[type=number]{
     background-color: #1B1F23;
     border: 1px solid orange;
     border-radius: 5px;
@@ -88,3 +100,13 @@ form input[type=submit]{
 h1{
     text-align: center;
 }
+
+table {
+    width: 100%;
+}
+
+th{
+    border: 1px solid orange;
+}
+
+

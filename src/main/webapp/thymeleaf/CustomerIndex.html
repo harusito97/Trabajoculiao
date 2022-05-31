@@ -5,7 +5,41 @@
 </head>
 <body>
 <div class="contact-container" layout:fragment="content">
-    My Index
+    <div>
+        <h2 th:text="${customer.getName()}+' '+${customer.getLastname()}" ></h2>
+        <p th:text="'Rut: '+${customer.getRut()}" ></p>
+        <hr />
+        <h2><a th:href="@{/CustomerServices}">Mis Servicios</a></h2>
+        <table>
+            <thead>
+            <th> Nombre</th>
+            <th> Direccion</th>
+            <th> Email</th>
+            <th> Phone</th>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(myservices)}">
+                <td>
+                    No existe ningun servicio.
+                </td>
+            </tr>
+            <tr th:each="service : ${myservices}">
+                <td class="longtd">
+                    <span th:text="${service.name}"></span>
+                </td>
+                <td class="longtd">
+                    <span th:text="${service.address}"></span>
+                </td>
+                <td class="longtd">
+                    <span th:text="${service.email}"></span>
+                </td>
+                <td class="smalltd">
+                    <span th:text="${service.phone}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

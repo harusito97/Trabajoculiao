@@ -1,14 +1,17 @@
 package com.pichulacorp.integracion.Controller;
 
 
+import com.pichulacorp.integracion.CustomerDetails;
 import com.pichulacorp.integracion.Entity.Customer;
 import com.pichulacorp.integracion.Service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,6 +36,7 @@ public class CustomerController {
             return modelAndView;
         }
     }
+
 //    @PostMapping("/Login")
 //    public ModelAndView loginCustomer(String account, String pwd){
 //        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();

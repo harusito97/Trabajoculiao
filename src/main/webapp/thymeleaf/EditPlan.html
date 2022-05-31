@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html layout:decorate="~{SessionLayout}">
+<head>
+  <title>SmartOffer - Editar Plan</title>
+</head>
+<body>
+<div id="main_container" layout:fragment="content">
+  <h1>SMART OFFER APP - ADMIN</h1>
+  <hr/>
+  <div id="form_container">
+    <form th:action="@{/EditPlan/{id}(id=${plan.id})}" th:object="${plan}" method="post">
+      <h2>Editar Plan</h2>
+      <p>Nombre: <input type="text" th:field="*{name}" /></p>
+      <p>precio: <input type="number" step="any" th:field="*{price}" /></p>
+      <p>Descripcion: <input type="text" th:field="*{description}" /></p>
+      <p>Mon<input value=false type="checkbox" th:field="*{availableMonday}" />
+        Tue<input value=false type="checkbox" th:field="*{availableTuesday}" />
+        Wed<input value=false type="checkbox" th:field="*{availableWednesday}" />
+        Thu<input value=false type="checkbox" th:field="*{availableThursday}" />
+        Fri<input value=false type="checkbox" th:field="*{availableFriday}" />
+        Sat<input value=false type="checkbox" th:field="*{availableSaturday}" />
+        Sun<input value=false type="checkbox" th:field="*{availableSunday}" /></p>
+      <p><input type="submit" value="Agregar" /> <input type="reset" value="Reset" /></p>
+    </form>
+  </div>
+  <hr/>
+</div>
+</body>
+</html>
