@@ -5,6 +5,7 @@ import com.pichulacorp.integracion.Service.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ class ServiceTest {
     public ServiceService traeelservicio;
 
 
-    @Test
+    //@Test
     public void probarEntidadServicio() {
 
         Customer usuarioTest = new Customer();
