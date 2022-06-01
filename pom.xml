@@ -17,6 +17,7 @@
     <properties>
         <java.version>11</java.version>
         <kotlin.version>1.7.0-RC</kotlin.version>
+        <webapp-runner.version>9.0.52.1</webapp-runner.version>
     </properties>
     <dependencies>
         <dependency>
@@ -80,7 +81,7 @@
         <dependency>
             <groupId>com.heroku</groupId>
             <artifactId>webapp-runner</artifactId>
-            <version>8.5.11.3</version>
+            <version>${webapp-runner.version}</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
