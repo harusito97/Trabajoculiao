@@ -77,6 +77,12 @@
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.heroku</groupId>
+            <artifactId>webapp-runner</artifactId>
+            <version>8.5.11.3</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>
