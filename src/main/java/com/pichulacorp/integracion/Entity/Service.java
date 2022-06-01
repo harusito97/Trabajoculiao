@@ -30,6 +30,10 @@ public class Service {
 
     @NotBlank
     @NotNull
+    private String description;
+
+    @NotBlank
+    @NotNull
     private String address;
 
     @NotBlank

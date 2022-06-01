@@ -10,11 +10,16 @@
     <div id="form_container">
         <form th:action="@{/EditService/{id}(id=${service.id})}" th:object="${service}" method="post">
             <h2>Agregar Servicio</h2>
-            <p>Nombre: <input type="text" th:field="*{name}" /></p>
-            <p>Dirección: <input type="text" th:field="*{address}" /></p>
-            <p>Telefono: <input type="text" th:field="*{phone}" /></p>
-            <p>Email: <input type="text" th:field="*{email}" /></p>
-            <p>Dueño: <input type="text" th:field="*{owner.name}" disabled="disabled" /></p>
+            <p class="left">Nombre:</p>
+            <input type="text" th:field="*{name}" />
+            <p class="left">Dirección: </p>
+            <input type="text" th:field="*{address}" />
+            <p class="left">Telefono: </p>
+            <input type="text" th:field="*{phone}" />
+            <p class="left">Email: </p>
+            <input type="text" th:field="*{email}" />
+            <p class="left">Descripcion: </p>
+            <textarea maxlength="512" th:field="*{description}"></textarea>
             <p><input type="submit" value="Actualizar" /></p>
         </form>
     </div>

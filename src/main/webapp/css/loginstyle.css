@@ -58,52 +58,21 @@ td{
     text-align: center;
 }
 
-form{
-    width: 50%;
-    max-width: 50%;
-    height: 30%;
-    max-height: 30%;
-}
-
-form p {
-    margin: 10px 0 10px 0;
-}
 
 form p, form input {
     height: 24px;
     font-size: 20px;
+    text-align: right;
 }
 
 .paladerecha{
     margin-right: 5%;
 }
 
-form input[type=text], form input[type=number]{
-    width: 95%;
-}
-
-form input[type=text], form input[type=password], form input[type=number], textarea{
+form input[type=text], form input[type=password], form input[type=number]{
     background-color: #1B1F23;
     border: 1px solid orange;
     border-radius: 5px;
-}
-
-textarea{
-    font-size: 20px;
-    resize: none;
-    width: 95%;
-    height: 7.5em;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
 }
 
 form input[type=submit]{
@@ -128,10 +97,6 @@ form input[type=submit]{
     margin: 0;
 }
 
-.left{
-    text-align: left;
-}
-
 h1{
     text-align: center;
 }
@@ -142,10 +107,6 @@ table {
 
 th{
     border: 1px solid orange;
-}
-
-#login-rut{
-    width: 35%;
 }
 
 

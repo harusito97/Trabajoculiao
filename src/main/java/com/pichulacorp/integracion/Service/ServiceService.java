@@ -36,6 +36,7 @@ public class ServiceService {
         actualService.setAddress(service.getAddress());
         actualService.setPhone(service.getPhone());
         actualService.setOwner(owner.getCustomer());
+        actualService.setDescription(service.getDescription());
         return repository.save(actualService);
     }
 

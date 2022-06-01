@@ -10,9 +10,12 @@
     <div id="form_container">
         <form th:action="@{/AddPlan/{id}(id=${serviceid})}" th:object="${plan}" method="post">
             <h2>Agregar Plan</h2>
-            <p>Nombre: <input type="text" th:field="*{name}" /></p>
-            <p>precio: <input type="number" step="any" th:field="*{price}" /></p>
-            <p>Descripcion: <input type="text" th:field="*{description}" /></p>
+            <p class="left">Nombre </p>
+            <input type="text" th:field="*{name}" />
+            <p class="left">Precio </p>
+            <input type="number"  step="any" th:field="*{price}" />
+            <p class="left">Descripcion </p>
+            <textarea maxlength="512" th:field="*{description}"></textarea>
             <p>Mon<input value=false type="checkbox" th:field="*{availableMonday}" />
                 Tue<input value=false type="checkbox" th:field="*{availableTuesday}" />
                 Wed<input value=false type="checkbox" th:field="*{availableWednesday}" />

@@ -26,7 +26,7 @@ public class Plan {
     private int id;
 
     @NotNull
-    private float price;
+    private float price = 0;
 
     @NotBlank
     @NotNull

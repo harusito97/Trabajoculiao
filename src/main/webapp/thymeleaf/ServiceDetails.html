@@ -6,11 +6,13 @@
 <body>
 <div class="contact-container" layout:fragment="content">
     <hr />
-    <h2 th:text="${service.getName()}"></h2>
-    <p th:text="'Direccion: '+${service.getAddress()}"></p>
-    <p th:text="'Email: '+${service.getEmail()}"></p>
-    <p th:text="'Telefono: +'+${service.getPhone()}"></p>
-    <a th:text="Editar" th:href="@{/EditService/{id}(id=${service.id})}">Editar</a>
+    <div id="customerprofile-container">
+        <h2 th:text="${service.getName()}"></h2>
+        <p th:text="'Direccion: '+${service.getAddress()}"></p>
+        <p th:text="'Email: '+${service.getEmail()}"></p>
+        <p th:text="'Telefono: +'+${service.getPhone()}"></p>
+        <a th:text="Editar" th:href="@{/EditService/{id}(id=${service.id})}">Editar</a>
+    </div>
     <hr />
     <h2>Planes</h2>
     <a th:href="@{/AddPlan/{id}(id=${service.id})}">Add Plan</a>
