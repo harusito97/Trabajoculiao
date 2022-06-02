@@ -25,7 +25,7 @@ public class CustomerSessionNavigationController {
     @GetMapping("/CustomerServices")
     public String getCustomerServices(Model model, @AuthenticationPrincipal CustomerDetails customer){
         model.addAttribute("customer",customer.getCustomer());
-        model.addAttribute("myservices", myservice.getServices());
+        model.addAttribute("myservices", myservice.getAllMyServices(customer.getCustomer()));
         model.addAttribute("activePage","CustomerServices");
         return "CustomerServices";
     }
