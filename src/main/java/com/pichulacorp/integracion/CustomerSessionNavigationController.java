@@ -18,7 +18,7 @@ public class CustomerSessionNavigationController {
     public String getCustomerIndex(Model model, @AuthenticationPrincipal CustomerDetails customer){
         model.addAttribute("customer",customer.getCustomer());
         model.addAttribute("activePage","CustomerIndex");
-        model.addAttribute("myservices", myservice.getServices());
+        model.addAttribute("myservices", myservice.getAllMyServices(customer.getCustomer()));
         return "CustomerIndex";
     }
 
