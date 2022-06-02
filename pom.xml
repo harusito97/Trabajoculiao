@@ -119,7 +119,7 @@
                                 <fileset>
                                     <directory>target</directory>
                                     <excludes>
-                                        <exclude>*.war</exclude>
+                                        <exclude>*.jar</exclude>
                                     </excludes>
                                 </fileset>
                             </filesets>
