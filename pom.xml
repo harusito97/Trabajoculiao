@@ -176,6 +176,7 @@
                         <phase>package</phase>
                         <goals><goal>copy</goal></goals>
                         <configuration>
+                            <outputDirectory>${project.basedir}</outputDirectory>
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>com.heroku</groupId>
