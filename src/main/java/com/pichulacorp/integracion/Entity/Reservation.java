@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -27,6 +29,12 @@ public class Reservation {
     @Id
     @GeneratedValue
     private int id;
+
+    @CreatedDate
+    private ZonedDateTime creationdate;
+
+    @LastModifiedDate
+    private ZonedDateTime lastmodifydate;
 
     @NotBlank
     @NotNull

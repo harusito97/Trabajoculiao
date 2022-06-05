@@ -7,9 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +38,12 @@ public class Plan {
     @NotBlank
     @NotNull
     private String description;
+
+    @CreatedDate
+    private ZonedDateTime creationdate;
+
+    @LastModifiedDate
+    private ZonedDateTime lastmodifydate;
 
     @NotNull
     private Boolean availableMonday = true;

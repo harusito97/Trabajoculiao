@@ -6,12 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.ZonedDateTime;
 
 
 @AllArgsConstructor
@@ -29,6 +32,12 @@ public class Review {
     @NotBlank
     @NotNull
     private String description;
+
+    @CreatedDate
+    private ZonedDateTime creationdate;
+
+    @LastModifiedDate
+    private ZonedDateTime lastmodifydate;
 
     @NotBlank
     @NotNull

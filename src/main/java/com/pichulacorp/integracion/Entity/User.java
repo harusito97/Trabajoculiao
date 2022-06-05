@@ -5,10 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 
@@ -43,6 +46,12 @@ public class User {
     @NotNull
     @NotBlank
     private String phone;
+
+    @CreatedDate
+    private ZonedDateTime creationdate;
+
+    @LastModifiedDate
+    private ZonedDateTime lastmodifydate;
 
     @NotNull
     @NotBlank

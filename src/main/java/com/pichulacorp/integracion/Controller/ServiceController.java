@@ -39,8 +39,8 @@ public class ServiceController {
     public ModelAndView addService(Service service, @AuthenticationPrincipal CustomerDetails owner){
         try {
             service.setOwner(owner.getCustomer());
-            myservice.saveService(service);
-            return new ModelAndView("redirect:/CustomerServices");
+            Service newservice = myservice.saveService(service);
+            return new ModelAndView("redirect:/ServiceDetails/"+newservice.getId());
         }catch (DataAccessException e){
             logger.error("Se fue a la chucha", e);
             ModelAndView modelAndView = new ModelAndView();
@@ -60,8 +60,8 @@ public class ServiceController {
     @PostMapping("/EditService/{id}")
     public String editServiceSave(Model model, @AuthenticationPrincipal CustomerDetails customer, Service service){
         model.addAttribute("customer",customer.getCustomer());
-        myservice.updateService(service, customer);
-        return "redirect:/CustomerServices";
+        Service newservice = myservice.updateService(service, customer);
+        return "redirect:/ServiceDetails/"+newservice.getId();
     }
 
     @GetMapping("/DeleteService/{id}")

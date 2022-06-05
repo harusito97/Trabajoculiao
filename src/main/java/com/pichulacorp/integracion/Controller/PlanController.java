@@ -52,8 +52,8 @@ public class PlanController {
     @PostMapping("/EditPlan/{id}")
     public String editPlanSave(Model model, Plan plan, @AuthenticationPrincipal CustomerDetails customerDetails){
         model.addAttribute("customer", customerDetails.getCustomer());
-        service.updatePlan(plan);
-        return "redirect:/CustomerServices";
+        Plan newplan = service.updatePlan(plan);
+        return "redirect:/ServiceDetails/"+newplan.getService().getId();
     }
 
     @GetMapping("/DeletePlan/{id}")

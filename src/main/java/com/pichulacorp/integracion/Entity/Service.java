@@ -3,10 +3,13 @@ package com.pichulacorp.integracion.Entity;
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +43,12 @@ public class Service {
     @NotNull
     private String phone;
 
+    @CreatedDate
+    private ZonedDateTime creationdate;
+
+    @LastModifiedDate
+    private ZonedDateTime lastmodifydate;
+
     @NotNull
     @NotBlank
     @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$",
@@ -50,12 +59,12 @@ public class Service {
     @JoinColumn(name = "ownerid", nullable = false)
     private Customer owner; //id del dueño
 
-    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Reservation> reservation = new ArrayList<>();
 
     @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Plan> plan = new ArrayList<>();
 
-    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Review> review = new ArrayList<>();
 }
