@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Roles {
-    Admin(Privileges.CustomerRegister),
-    CustomerBasico(Privileges.ReporteSimpleMensual),
-    CustomerMedio(Privileges.ReporteSimpleSemanal,Privileges.ReporteDetalladoSemanal),
-    CustomerFull(Privileges.ReporteDetalladoSemanal,Privileges.ReporteSimpleSemanal,Privileges.ReporteGeneralMensual);
+    Admin(Privileges.genericOperations, Privileges.Admin),
+    Basic(Privileges.genericOperations, Privileges.SimpleReport),
+    Medium(Privileges.genericOperations, Privileges.SimpleReport),
+    Full(Privileges.genericOperations, Privileges.SimpleReport);
 
     public final List<Privileges> privilegesList;
 

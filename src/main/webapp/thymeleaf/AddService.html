@@ -15,12 +15,12 @@
                 <p class="left">Dirección: </p>
                 <input type="text" th:field="*{address}" />
                 <p class="left">Telefono: </p>
-                <input type="text" th:field="*{phone}" />
+                <input type="text" th:field="*{phone}" placeholder="912345678"/>
                 <p class="left">Email: </p>
-                <input type="text" th:field="*{email}" />
+                <input type="text" th:field="*{email}" placeholder="example@example.com"/>
                 <p class="left">Descripcion: </p>
                 <textarea maxlength="512" th:field="*{description}"></textarea>
-                <p><input type="submit" value="Agregar" /> <input type="reset" value="Reset" /></p>
+                <input type="submit" value="Agregar" />
         </form>
     </div>
     <hr/>

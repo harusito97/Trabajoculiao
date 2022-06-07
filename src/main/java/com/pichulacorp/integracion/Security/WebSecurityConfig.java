@@ -20,10 +20,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/Register", "/Contact", "/Aboutus", "/Index", "/Error", "/Layout", "/")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/Contact", "/Aboutus", "/Index", "/Error", "/Layout", "/").permitAll()
+                .antMatchers("/Register").hasAuthority("Admin")
+                .antMatchers("/SimpleReport").hasAuthority("SimpleReport")
+                .antMatchers("/CustomerIndex","/CustomerReports","/CustomerServices","/EditPlan",
+                        "/EditService","/ServiceDetails","/AddPlan","/AddService").hasAnyAuthority("genericOperations")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .usernameParameter("username")

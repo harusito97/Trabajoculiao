@@ -1,16 +1,15 @@
-*{
+* {
     font-family: "Roboto Light";
     color: white;
 }
 
 
-
-body{
+body {
     height: 100%;
     background-color: #2B2B2B;
 }
 
-#main_container{
+#main_container {
     width: 80%;
     margin: auto;
     padding: 20px;
@@ -18,47 +17,52 @@ body{
 }
 
 
-ul{
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     width: 100%;
 }
-li{
+
+li {
     float: left;
 }
-ul#index_menu li{
+
+ul#index_menu li {
     display: inline;
     text-align: center;
     padding: 16px;
     text-decoration: none;
 }
+
 li a:hover {
     background-color: #111111;
     color: gold;
 }
-li a{
+
+li a {
     display: block;
     color: orange;
     text-align: center;
     padding: 16px;
     text-decoration: none;
 }
-a:visited{
+
+a:visited {
     color: orange;
 }
 
-a{
+a {
     color: orange;
     text-decoration: none;
 }
 
-td{
+td {
     text-align: center;
 }
 
-form{
+form {
     width: 50%;
     max-width: 50%;
     height: 30%;
@@ -70,26 +74,38 @@ form p {
     margin: 10px 0 10px 0;
 }
 
-form p, form input {
+form p, form input, select {
     height: 24px;
     font-size: 20px;
 }
 
-.paladerecha{
+.paladerecha {
     margin-right: 5%;
 }
 
-form input[type=text], form input[type=number]{
+form input[type=text], form input[type=number], select, input[type=password] {
     width: 95%;
 }
 
-form input[type=text], form input[type=password], form input[type=number], textarea{
+input[type=submit] {
+    margin-top: 1.5em;
+    width: 100%;
+    height: 2em;
+}
+
+input[type=submit]:hover {
+    font-weight: bolder;
+    color: black;
+    background-color: white;
+}
+
+form input[type=text], form input[type=password], form input[type=number], textarea, select {
     background-color: #1B1F23;
     border: 1px solid orange;
     border-radius: 5px;
 }
 
-textarea{
+textarea {
     font-size: 20px;
     resize: none;
     width: 95%;
@@ -104,19 +120,20 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+    -moz-appearance: textfield; /* Firefox */
 }
 
-form input[type=submit]{
+form input[type=submit] {
     background-color: #FFA500FF;
     border: 1px solid orange;
     border-radius: 5px;
 }
 
-#form_container{
+#form_container {
     display: flex;
     justify-content: center;
 }
+
 #form_container form {
     padding: 1em;
     text-align: center;
@@ -124,16 +141,16 @@ form input[type=submit]{
     border-radius: 5px;
 }
 
-.centrado{
+.centrado {
     text-align: center;
     margin: 0;
 }
 
-.left{
+.left {
     text-align: left;
 }
 
-h1{
+h1 {
     text-align: center;
 }
 
@@ -141,13 +158,16 @@ table {
     width: 100%;
 }
 
-th{
+th {
     border: 1px solid orange;
 }
 
-#login-rut{
+#login-rut {
     width: 35%;
 }
+
+
+
 
 
 

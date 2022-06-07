@@ -4,19 +4,32 @@
     <title>SmartOffer - Registro</title>
 </head>
 <body>
-        <div id="form_container" layout:fragment="content">
-            <form th:action="@{/Register}" th:object="${customer}" method="post">
-                <h2>
-                    Registration
-                </h2>
-                <p>Nombre: <input type="text" th:field="*{name}" /></p>
-                <p>Apellido: <input type="text" th:field="*{lastname}" /></p>
-                <p>Password: <input type="password" th:field="*{pwd}" /></p>
-                <p>Rut: <input type="text" th:field="*{rut}" /></p>
-                <p>Telefono: <input type="text" th:field="*{phone}" /></p>
-                <p>Email: <input type="text" th:field="*{email}" /></p>
-                <p><input type="submit" value="Registrar" /> <input type="reset" value="Reset" /></p>
-            </form>
-        </div>
+<div id="form_container" layout:fragment="content">
+    <form th:action="@{/Register}" th:object="${customer}" method="post">
+        <h2>
+            Registration
+        </h2>
+        <p class="left">Nombre:</p>
+        <input type="text" th:field="*{name}"/>
+        <p class="left">Apellido:</p>
+        <input type="text" th:field="*{lastname}"/>
+        <p class="left">Password:</p>
+        <input type="password" th:field="*{pwd}"/>
+        <p class="left">Rut:</p>
+        <input type="text" th:field="*{rut}" placeholder="12345678-9"/>
+        <p class="left">Telefono:</p>
+        <input type="text" th:field="*{phone}"/>
+        <p class="left">Email:</p>
+        <input type="text" th:field="*{email}" placeholder="example@example.com"/>
+        <p class="left">Tipo de cuenta:</p>
+        <select th:field="*{role}">
+            <option value="Basic" selected>Basic</option>
+            <option value="Medium">Medium</option>
+            <option value="Full">Full</option>
+            <option value="Admin">Admin</option>
+        </select>
+        <input type="submit" value="Registrar"/>
+    </form>
+</div>
 </body>
 </html>

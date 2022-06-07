@@ -6,18 +6,17 @@
 </head>
 <body>
 <div id="login-container" layout:fragment="content">
-    <h1>SMART OFFER APP - ADMIN</h1>
+    <h1>SmartOffer App - Log In</h1>
     <hr/>
     <div id="form_container">
         <form th:action="@{/Login}" method="post">
             <h2>Login</h2>
             <hr/>
             <div>
-                <p>Rut <input name="username" type="text"/></p>
+                <p>Rut <input name="username" type="text" placeholder="12345678-9"/></p>
                 <p>Password <input name="password" type="password"/></p>
             </div>
-            <p class="centrado"><a>¿olvido su contraseña?</a></p>
-            <p class="centrado"><input type="submit" value="Dentrame"/></p>
+            <input type="submit" value="Log In"/>
         </form>
     </div>
     <hr/>

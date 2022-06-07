@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>SmartOffer - Panel de Control</title>
@@ -7,7 +8,6 @@
 </head>
 <body>
 <div id="main_container">
-    <label class="index_title"><h1> Bienvenido a SmartOffer </h1></label>
     <div class="nav_container">
         <nav id="index_menu">
             <ul>
@@ -25,6 +25,10 @@
                 </li>
                 <li th:class="${activePage == 'Logout'} ? 'nav-item active' : 'nav-item'">
                     <a th:href="@{/Logout}">Cerrar Sesion</a>
+                </li>
+                <li sec:authorize="hasAuthority('Admin')"
+                    th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
+                    <a th:href="@{/Register}">Admin</a>
                 </li>
             </ul>
         </nav>

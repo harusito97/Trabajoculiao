@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>SmartOffer - Inicio</title>
@@ -17,14 +18,14 @@
                     <li th:class="${activePage == 'Login'} ? 'nav-item active' : 'nav-item'">
                         <a th:href="@{/Login}">Iniciar Sesion</a>
                     </li>
-                    <li th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
-                        <a th:href="@{/Register}">Registrarse</a>
-                    </li>
                     <li th:class="${activePage == 'Aboutus'} ? 'nav-item active' : 'nav-item'">
                         <a th:href="@{/Aboutus}">Sobre Nosotros</a>
                     </li>
                     <li th:class="${activePage == 'Contact'} ? 'nav-item active' : 'nav-item'">
                         <a th:href="@{/Contact}">Contacto</a>
+                    </li>
+                    <li sec:authorize="hasAuthority('Admin')" th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
+                        <a th:href="@{/Register}">Admin</a>
                     </li>
                 </ul>
             </nav>

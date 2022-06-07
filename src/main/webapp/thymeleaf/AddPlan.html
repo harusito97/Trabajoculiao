@@ -11,7 +11,7 @@
         <form th:action="@{/AddPlan/{id}(id=${serviceid})}" th:object="${plan}" method="post">
             <h2>Agregar Plan</h2>
             <p class="left">Nombre </p>
-            <input type="text" th:field="*{name}" />
+            <input type="text" th:field="*{name}"/>
             <p class="left">Precio </p>
             <input type="number"  step="any" th:field="*{price}" />
             <p class="left">Descripcion </p>
@@ -23,7 +23,7 @@
                 Fri<input value=false type="checkbox" th:field="*{availableFriday}" />
                 Sat<input value=false type="checkbox" th:field="*{availableSaturday}" />
                 Sun<input value=false type="checkbox" th:field="*{availableSunday}" /></p>
-            <p><input type="submit" value="Agregar" /> <input type="reset" value="Reset" /></p>
+            <input type="submit" value="Agregar" />
         </form>
     </div>
     <hr/>

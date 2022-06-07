@@ -30,7 +30,7 @@ public class SetupDataLoader implements
         if(customerRepository.getCustomerByRole(Roles.Admin).isEmpty()){
             Customer admin = new Customer();
             admin.setName("Admin");
-            admin.setLastname("chuchetumare");
+            admin.setLastname("UwU");
             admin.setPwd(bCryptPasswordEncoder.encode("123123"));
             admin.setRut("19534382-9");
             admin.setEmail("alejandrojarpa97@gmail.com");

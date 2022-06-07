@@ -25,6 +25,10 @@ public class ServiceService {
     @Autowired
     private CustomerRepository customerRepository;
 
+
+
+
+
     public Service saveService(Service service){
         return repository.save(service);
     }
@@ -43,6 +47,55 @@ public class ServiceService {
     public List<Service> getServiceByOwnerRut(String rut){
         return repository.findByOwnerRut(rut);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public List<Service> getServices(){
         return repository.findAll();
