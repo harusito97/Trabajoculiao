@@ -9,7 +9,15 @@
 <body>
 <div id="main_container">
     <div class="nav_container">
-        <nav id="index_menu">
+        <nav class="index_menu">
+            <ul>
+                <li sec:authorize="hasAuthority('Admin')"
+                    th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
+                    <a th:href="@{/Register}">Ingreso Admin</a>
+                </li>
+            </ul>
+        </nav>
+        <nav id="session_menu">
             <ul>
                 <li th:class="${activePage == 'CustomerIndex'} ? 'nav-item active' : 'nav-item'">
                     <a th:href="@{/CustomerIndex}">Resumen</a>
@@ -25,10 +33,6 @@
                 </li>
                 <li th:class="${activePage == 'Logout'} ? 'nav-item active' : 'nav-item'">
                     <a th:href="@{/Logout}">Cerrar Sesion</a>
-                </li>
-                <li sec:authorize="hasAuthority('Admin')"
-                    th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
-                    <a th:href="@{/Register}">Admin</a>
                 </li>
             </ul>
         </nav>

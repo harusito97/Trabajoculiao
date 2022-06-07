@@ -166,6 +166,11 @@ th {
     width: 35%;
 }
 
+#session_menu {
+    border-top: solid 1px;
+    border-color: orange;
+}
+
 
 
 

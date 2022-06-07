@@ -8,7 +8,6 @@
 </head>
 <body>
     <div id="main_container">
-        <label class="index_title"><h1> Bienvenido a SmartOffer </h1></label>
         <div class="nav_container">
             <nav id="index_menu">
                 <ul>
@@ -24,8 +23,8 @@
                     <li th:class="${activePage == 'Contact'} ? 'nav-item active' : 'nav-item'">
                         <a th:href="@{/Contact}">Contacto</a>
                     </li>
-                    <li sec:authorize="hasAuthority('Admin')" th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
-                        <a th:href="@{/Register}">Admin</a>
+                    <li th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
+                        <a sec:authorize="hasAuthority('Admin')"  th:href="@{/Register}">Admin</a>
                     </li>
                 </ul>
             </nav>

@@ -11,6 +11,7 @@ import com.pichulacorp.integracion.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @org.springframework.stereotype.Service
@@ -109,8 +110,9 @@ public class ServiceService {
         return repository.findAllMyServicesByOwner(customer);
     }
 
+    @Transactional
     public void deleteService(Service service) {
-        repository.delete(repository.findServiceById(service.getId()));
+        repository.deleteById(service.getId());
     }
 
     public List<Plan> getServicePlans(int id) {

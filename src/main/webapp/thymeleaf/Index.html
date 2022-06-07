@@ -6,9 +6,8 @@
 <body>
 <div layout:fragment="content">
     <h1>Bienvenido a SmartOffer</h1>
-    <p>
-        
-    </p>
+    <h1><a th:href="@{/Login}">Iniciar Sesion</a></h1>
+    <h1><a sec:authorize="hasAuthority('Admin')" th:href="@{/Register}">Admin</a></h1>
 </div>
 </body>
 </html>

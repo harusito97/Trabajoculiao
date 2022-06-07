@@ -53,15 +53,15 @@ public class Reservation {
 
     //
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userrut", nullable = false)
     private User userrut; // usuario que hizo la reserva
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "service", nullable = false)
     private Service service; // servicio contratado
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "plan", nullable = false)
     private Plan plan; // El plan del servicio el cual fue contratado
 
