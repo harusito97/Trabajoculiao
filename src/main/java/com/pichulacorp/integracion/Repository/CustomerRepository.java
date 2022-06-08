@@ -12,6 +12,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     Customer getCustomerByRut(String rut);
 
-    Optional<Customer> getCustomerByRole(Roles role);
+    Optional<Customer> getFirstCustomerByRole(Roles role);
 
 }

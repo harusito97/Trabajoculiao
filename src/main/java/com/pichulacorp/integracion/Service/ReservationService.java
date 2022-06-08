@@ -18,5 +18,4 @@ public class ReservationService {
     public List<Reservation> getMyReservations(Service service, ZonedDateTime startdate, ZonedDateTime enddate){
         return repository.findAllReservationByServiceAndDateBetween(service, startdate, enddate);
     };
-
 }

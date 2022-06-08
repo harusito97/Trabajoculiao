@@ -55,16 +55,19 @@ public class Service {
             message = "Email Invalido")
     private String email;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "ownerid", nullable = false)
     private Customer owner; //id del dueño
 
-    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE)
     private List<Reservation> reservation = new ArrayList<>();
 
-    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE)
     private List<Plan> plan = new ArrayList<>();
 
-    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE)
     private List<Review> review = new ArrayList<>();
+
+    @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE)
+    private List<ServiceVisit> serviceVisits = new ArrayList<>();
 }

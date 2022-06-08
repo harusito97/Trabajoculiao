@@ -2,27 +2,25 @@ package com.pichulacorp.integracion.Reporting;
 
 
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class SimpleReport {
+public class ReservationsReport {
 
-    private List<DetalleServicio> serviceReports;
+    private List<ServiceDetail> serviceReports;
+    private String startDate;
+    private String endDate;
     private int reservastotal;
     private float platatotal;
 
     @Getter
-    @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    @ToString
-    public static class DetalleServicio {
+    public static class ServiceDetail {
         private String name;
         private int reservas;
         private float plata;

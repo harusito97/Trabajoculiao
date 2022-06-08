@@ -26,10 +26,6 @@ public class ServiceService {
     @Autowired
     private CustomerRepository customerRepository;
 
-
-
-
-
     public Service saveService(Service service){
         return repository.save(service);
     }

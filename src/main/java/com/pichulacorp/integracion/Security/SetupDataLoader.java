@@ -27,7 +27,7 @@ public class SetupDataLoader implements
             return;
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-        if(customerRepository.getCustomerByRole(Roles.Admin).isEmpty()){
+        if(customerRepository.getFirstCustomerByRole(Roles.Admin).isEmpty()){
             Customer admin = new Customer();
             admin.setName("Admin");
             admin.setLastname("UwU");

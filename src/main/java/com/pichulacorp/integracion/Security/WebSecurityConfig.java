@@ -21,10 +21,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/Contact", "/Aboutus", "/Index", "/Error", "/Layout", "/").permitAll()
-                .antMatchers("/Register").hasAuthority("Admin")
-                .antMatchers("/SimpleReport").hasAuthority("SimpleReport")
+                .antMatchers("/Register").hasAuthority(Privileges.Admin.name())
+                .antMatchers("/ReservationReport").hasAnyAuthority(Privileges.SimpleReport.name())
                 .antMatchers("/CustomerIndex","/CustomerReports","/CustomerServices","/EditPlan",
-                        "/EditService","/ServiceDetails","/AddPlan","/AddService").hasAnyAuthority("genericOperations")
+                        "/EditService","/ServiceDetails","/AddPlan","/AddService").hasAnyAuthority(Privileges.genericOperations.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

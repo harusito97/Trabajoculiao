@@ -59,7 +59,7 @@ public class User {
             message = "Email Invalido")
     private String email;
 
-    @OneToMany(mappedBy = "userrut", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "userrut", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Reservation> reservations;
 
 }

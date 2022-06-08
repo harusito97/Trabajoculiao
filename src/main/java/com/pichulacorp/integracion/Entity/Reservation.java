@@ -48,20 +48,20 @@ public class Reservation {
     @NotNull
     private ZonedDateTime enddate; // fecha termino de servicio
 
-    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
     //
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "userrut", nullable = false)
     private User userrut; // usuario que hizo la reserva
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "service", nullable = false)
     private Service service; // servicio contratado
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "plan", nullable = false)
     private Plan plan; // El plan del servicio el cual fue contratado
 

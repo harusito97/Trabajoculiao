@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html layout:decorate="~{SessionLayout}">
+<head>
+  <title>SmartOffer - Inicio</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <h3>Reporte del periodo: <span th:text="${reportData.startDate}"></span> -- <span th:text="${reportData.endDate}"></span></h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Servicio</th>
+      <th>Visitas</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="servicio : ${reportData.getServiceDetail()}">
+      <td th:text="${servicio.name}"></td>
+      <td th:text="${servicio.visits}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+    <tr>
+      <th>Total Visitas</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td th:text="${reportData.getTotalVisits()}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

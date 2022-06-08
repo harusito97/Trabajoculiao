@@ -45,11 +45,11 @@ public class Review {
     @Max(value = 5, message = "las valoraciones son de 1 a 5")
     private int valoration; // 1 - 5
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "atreservation", nullable = false)
     private Reservation reservation; // reserva en cuestion
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "atservice", nullable = false)
     private Service service; // servicio en cuestion
 

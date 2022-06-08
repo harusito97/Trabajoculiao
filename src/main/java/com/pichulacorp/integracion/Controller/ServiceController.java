@@ -72,7 +72,7 @@ public class ServiceController {
     }
 
     @GetMapping("/ServiceDetails/{id}")
-    public String serviceDetails(Model model, Service service, @AuthenticationPrincipal CustomerDetails customer){
+    public String serviceDetails(Model model, Service service, @AuthenticationPrincipal CustomerDetails customer) {
         model.addAttribute("customer",customer.getCustomer());
         model.addAttribute("service",myservice.getServiceById(service.getId()));
         model.addAttribute("plans",myservice.getServicePlans(service.getId()));
