@@ -6,6 +6,7 @@ import com.pichulacorp.integracion.Reporting.ReservationsReport
 import com.pichulacorp.integracion.Reporting.ReservationsReport.ServiceDetail
 import com.pichulacorp.integracion.Repository.ServiceVisitRepository
 import com.pichulacorp.integracion.Service.ReservationService
+import com.pichulacorp.integracion.Service.ServiceService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.stereotype.Controller
@@ -23,6 +24,9 @@ class ReportController {
     @Autowired
     var serviceVisitRepository: ServiceVisitRepository? = null
 
+    @Autowired
+    var serviceService: ServiceService? = null
+
     private val simpleHumanReadableFormat: DateTimeFormatter = DateTimeFormatter.RFC_1123_DATE_TIME
 
     @GetMapping("/ReportPreview")
@@ -38,16 +42,16 @@ class ReportController {
         val end = ZonedDateTime.now()
         val start = end.minus(1, ChronoUnit.MONTHS)
 
-        val serviceDetailList = customer.customer.services.map { servicio ->
+        val serviceDetailList = serviceService?.getServiceByOwnerRut(customer.customer.rut)?.map { servicio ->
             val myReservations = reservationService?.getMyReservations(servicio, start, end) ?: listOf()
             ServiceDetail(
-                servicio.name,
-                myReservations.size,
-                myReservations.map {
-                    it.plan.price * ChronoUnit.DAYS.between(it.startdate, it.enddate)
-                }.sum()
+                    servicio.name,
+                    myReservations.size,
+                    myReservations.map {
+                        it.plan.price * ChronoUnit.DAYS.between(it.startdate, it.enddate)
+                    }.sum()
             )
-        }
+        }?: listOf()
 
         val reservationsReport = ReservationsReport(
             serviceDetailList,
@@ -71,14 +75,14 @@ class ReportController {
         val end = ZonedDateTime.now()
         val start = end.minus(1, ChronoUnit.MONTHS)
 
-        val serviceClickDetails = customer.customer.services.map { servicio ->
+        val serviceClickDetails = serviceService?.getServiceByOwnerRut(customer.customer.rut)?.map { servicio ->
             val visitCount =
                 serviceVisitRepository?.countServiceVisitsByServiceAndVisitTimestampBetween(servicio, start, end)
             VisitsReport.ServiceVisitsDetail(
                 servicio.name,
                 visitCount
             )
-        }
+        }?: listOf()
 
         val reportData = VisitsReport(
             start.format(simpleHumanReadableFormat),
