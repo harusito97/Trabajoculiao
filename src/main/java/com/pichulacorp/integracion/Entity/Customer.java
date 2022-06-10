@@ -46,7 +46,7 @@ public class Customer {
     @NotBlank
     @Size(min = 9, max = 12)
     @Column(unique = true)
-//    @Pattern(regexp = "^([0-9]{1,2})+(\\.{0,1})+([0-9]{3})+(\\.{0,1})+([0-9]{3})+(\\-{0,1})+([0-9kK]{1})$")
+    @Pattern(regexp = "^[0-9]{1,2}(\\.?[0-9]{3}){2}\\-[0-9kK]$")
     private String rut;
 
     @NotNull

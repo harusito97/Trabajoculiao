@@ -1,19 +1,19 @@
 package com.pichulacorp.integracion.Controller;
 
 
-import com.pichulacorp.integracion.CustomerDetails;
-import com.pichulacorp.integracion.Entity.Customer;
-import com.pichulacorp.integracion.Service.CustomerService;
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+
+import com.pichulacorp.integracion.Entity.Customer;
+import com.pichulacorp.integracion.Service.CustomerService;
 
 @Controller
 public class CustomerController {
@@ -24,16 +24,19 @@ public class CustomerController {
     private CustomerService service;
 
     @PostMapping( "/Register")
-    public ModelAndView addCustomer(Customer customer){
+    public String addCustomer(Model model, @Valid Customer customer, BindingResult result){
+        if (result.hasErrors()) {
+            model.addAttribute("Active Page", "Register");
+            model.addAttribute("customer", customer);
+            return "Register";
+        }
         try {
             service.saveCustomer(customer);
-            return new ModelAndView("redirect:/Login");
+            return "redirect:/Login";
         }catch(DataAccessException e){
             logger.error("Se fue a la chucha", e);
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("Error");
-            modelAndView.addObject("error", e.getMessage());
-            return modelAndView;
+            model.addAttribute("error", e.getMessage());
+            return "Error";
         }
     }
 
