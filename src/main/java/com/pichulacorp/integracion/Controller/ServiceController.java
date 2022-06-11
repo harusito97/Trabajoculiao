@@ -12,11 +12,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -36,17 +39,21 @@ public class ServiceController {
     }
 
     @PostMapping("/AddService")
-    public ModelAndView addService(Service service, @AuthenticationPrincipal CustomerDetails owner){
+    public String addService(Model model, @Valid Service service, @AuthenticationPrincipal CustomerDetails owner, BindingResult result){
+        model.addAttribute("customer",owner.getCustomer());
+        if (result.hasErrors()){
+            model.addAttribute("Active Page","AddService");
+            model.addAttribute("service", service);
+            return "/AddService";
+        }
         try {
             service.setOwner(owner.getCustomer());
             Service newservice = myservice.saveService(service);
-            return new ModelAndView("redirect:/ServiceDetails/"+newservice.getId());
+            return "redirect:/ServiceDetails/"+newservice.getId();
         }catch (DataAccessException e){
             logger.error("Se fue a la chucha", e);
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("Error");
-            modelAndView.addObject("error", e.getMessage());
-            return modelAndView;
+            model.addAttribute("error", e.getMessage());
+            return "Error";
         }
     }
 
@@ -58,10 +65,20 @@ public class ServiceController {
     }
 
     @PostMapping("/EditService/{id}")
-    public String editServiceSave(Model model, @AuthenticationPrincipal CustomerDetails customer, Service service){
+    public String editServiceSave(Model model, @AuthenticationPrincipal CustomerDetails customer, @Valid Service service, BindingResult result){
         model.addAttribute("customer",customer.getCustomer());
-        Service newservice = myservice.updateService(service, customer);
-        return "redirect:/ServiceDetails/"+newservice.getId();
+        if (result.hasErrors()){
+            model.addAttribute("activePage", "EditService");
+            return "/EditService/{id}";
+        }
+        try {
+            Service newservice = myservice.updateService(service, customer);
+            return "redirect:/ServiceDetails/"+newservice.getId();
+        }catch(DataAccessException e){
+            logger.error("Se fue a la chucha", e);
+            model.addAttribute("error", e.getMessage());
+            return "Error";
+        }
     }
 
     @GetMapping("/DeleteService/{id}")

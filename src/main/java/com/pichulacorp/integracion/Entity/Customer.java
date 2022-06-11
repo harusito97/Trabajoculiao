@@ -59,11 +59,11 @@ public class Customer {
 
     @NotNull
     @NotBlank(message = "No puede estar en blanco")
-    @Pattern(regexp = "^(9[0-9]{8}|[0-9]{8}$)", message = "Telefono invalido, ej: 12345678 o 912345678")
+    @Pattern(regexp = "^(9?[0-9]{8}$)", message = "Telefono invalido, ej: 12345678 o 912345678")
     @Size(max = 9, message = "No puede tener mas de 9 caracteres")
     private String phone;
 
-    @CreationTimestamp
+    @CreationTimestamp // si funciona
     private ZonedDateTime creationdate;
 
     @UpdateTimestamp

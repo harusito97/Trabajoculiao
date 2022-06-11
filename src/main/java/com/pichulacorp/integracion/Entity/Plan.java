@@ -11,7 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,14 +29,17 @@ public class Plan {
     private int id;
 
     @NotNull
-    private float price = 0;
-
-    @NotBlank
-    @NotNull
+    @NotBlank(message = "No puede estar en blanco")
+    @Size(min = 2, max = 25, message = "Debe tener entre 2 a 25 caracteres")
     private String name;
 
-    @NotBlank
     @NotNull
+    @Min(value = 0, message = "El valor no puede ser menor a 0")
+    private float price = 0;
+
+    @NotNull
+    @NotBlank
+    @Size(max = 512, message = "No pueden ser mas de 512 caracteres")
     private String description;
 
     @CreatedDate

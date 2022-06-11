@@ -6,24 +6,29 @@
 <body>
 <div class="contact-container" layout:fragment="content">
     Edit Service
-    <hr />
+    <hr/>
     <div id="form_container">
         <form th:action="@{/EditService/{id}(id=${service.id})}" th:object="${service}" method="post">
-            <h2>Agregar Servicio</h2>
+            <h2>Editar Servicio</h2>
             <p class="left">Nombre:</p>
-            <input type="text" th:field="*{name}" />
+            <input type="text" th:field="*{name}" maxlength="50" size="50"/>
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             <p class="left">Dirección: </p>
-            <input type="text" th:field="*{address}" />
+            <input type="text" th:field="*{address}" maxlength="50" size="50"/>
+            <span class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
             <p class="left">Telefono: </p>
-            <input type="text" th:field="*{phone}" />
+            <input type="text" th:field="*{phone}" maxlength="9" size="9"/>
+            <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
             <p class="left">Email: </p>
-            <input type="text" th:field="*{email}" />
+            <input type="text" th:field="*{email}" maxlength="128" size="128"/>
+            <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             <p class="left">Descripcion: </p>
             <textarea maxlength="512" th:field="*{description}"></textarea>
-            <input type="submit" value="Actualizar" />
+            <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            <input type="submit" value="Actualizar"/>
         </form>
     </div>
-    <hr />
+    <hr/>
 </div>
 </body>
 </html>

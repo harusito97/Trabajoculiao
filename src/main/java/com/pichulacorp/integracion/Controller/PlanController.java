@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+
 @Controller
 public class PlanController {
 
@@ -37,7 +39,7 @@ public class PlanController {
     }
 
     @PostMapping("/AddPlan/{id}")
-    public String savePlan(Model model, Plan plan, Service parentService){
+    public String savePlan(Model model, @Valid Plan plan, Service parentService){
         service.savePlan(plan, parentService);
         return "redirect:/CustomerServices";
     }
@@ -50,7 +52,7 @@ public class PlanController {
     }
 
     @PostMapping("/EditPlan/{id}")
-    public String editPlanSave(Model model, Plan plan, @AuthenticationPrincipal CustomerDetails customerDetails){
+    public String editPlanSave(Model model, @Valid Plan plan, @AuthenticationPrincipal CustomerDetails customerDetails){
         model.addAttribute("customer", customerDetails.getCustomer());
         Plan newplan = service.updatePlan(plan);
         return "redirect:/ServiceDetails/"+newplan.getService().getId();

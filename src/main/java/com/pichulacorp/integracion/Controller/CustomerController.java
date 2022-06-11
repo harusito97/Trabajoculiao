@@ -25,9 +25,9 @@ public class CustomerController {
 
     @PostMapping( "/Register")
     public String addCustomer(Model model, @Valid Customer customer, BindingResult result){
+        model.addAttribute("customer", customer);
         if (result.hasErrors()) {
             model.addAttribute("Active Page", "Register");
-            model.addAttribute("customer", customer);
             return "Register";
         }
         try {

@@ -3,12 +3,16 @@ package com.pichulacorp.integracion.Entity;
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,32 +31,37 @@ public class Service {
     @GeneratedValue
     private int id;
 
-    @NotBlank
     @NotNull
+    @NotBlank(message = "No puede estar en blanco")
+    @Size(min = 2, max = 25, message = "Debe tener entre 2 a 25 caracteres")
     private String name;
 
-    @NotBlank
     @NotNull
+    @NotBlank
+    @Size(max = 512, message = "No pueden ser mas de 512 caracteres")
     private String description;
 
     @NotBlank
     @NotNull
+    @Size(max = 75, message = "No pueden ser mas de 75 caracteres")
     private String address;
 
-    @NotBlank
     @NotNull
+    @NotBlank(message = "No puede estar en blanco")
+    @Pattern(regexp = "^(9[0-9]{8}|[0-9]{8}$)", message = "Telefono invalido, ej: 12345678 o 912345678")
+    @Size(max = 9, message = "No puede tener mas de 9 caracteres")
     private String phone;
 
-    @CreatedDate
+    @CreationTimestamp
     private ZonedDateTime creationdate;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     private ZonedDateTime lastmodifydate;
 
     @NotNull
-    @NotBlank
-    @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$",
-            message = "Email Invalido")
+    @NotBlank(message = "No puede estar en blanco")
+    @Email(message = "Email invalido, ej: ejemplo@gmail.com")
+    @Size(max = 128, message = "No puede tener mas de 128 caracteres")
     private String email;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
