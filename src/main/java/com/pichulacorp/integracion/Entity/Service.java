@@ -37,7 +37,7 @@ public class Service {
     private String name;
 
     @NotNull
-    @NotBlank
+    @NotBlank(message = "No puede estar en blanco")
     @Size(max = 512, message = "No pueden ser mas de 512 caracteres")
     private String description;
 

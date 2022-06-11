@@ -39,7 +39,7 @@ public class ServiceController {
     }
 
     @PostMapping("/AddService")
-    public String addService(Model model, @Valid Service service, @AuthenticationPrincipal CustomerDetails owner, BindingResult result){
+    public String addService(Model model, @Valid Service service, BindingResult result, @AuthenticationPrincipal CustomerDetails owner){
         model.addAttribute("customer",owner.getCustomer());
         if (result.hasErrors()){
             model.addAttribute("Active Page","AddService");
