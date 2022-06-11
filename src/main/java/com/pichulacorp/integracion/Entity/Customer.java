@@ -8,9 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,33 +29,38 @@ public class Customer {
     private int id;
 
     @NotNull
-    @NotBlank
-    @Size(min = 2, max = 25)
+    @NotBlank(message = "No puede estar en blanco")
+    @Size(min = 2, max = 25, message = "Debe tener entre 2 a 25 caracteres")
     private String name;
 
     @NotNull
-    @NotBlank
+    @NotBlank(message = "No puede estar en blanco")
+    @Size(min = 2, max = 25, message = "Debe tener entre 2 a 25 caracteres")
     private String lastname;
 
+    @Valid
     @NotNull
-    @NotBlank
+    @NotBlank(message = "No puede estar en blanco")
+    @Size(min = 6, max = 25, message = "Debe tener entre 6 a 25 caracteres")
     private String pwd;
 
     @NotNull
-    @NotBlank
-    @Size(min = 9, max = 12)
+    @NotBlank(message = "No puede estar en blanco")
+    @Size(min = 9,max = 12, message = "Debe tener entre 9 a 12 caracteres")
     @Column(unique = true)
-    @Pattern(regexp = "^[0-9]{1,2}(\\.?[0-9]{3}){2}\\-[0-9kK]$")
+    @Pattern(regexp = "^[0-9]{1,2}(\\.?[0-9]{3}){2}\\-[0-9kK]$", message = "rut Invalido, ej: 12345678-9")
     private String rut;
 
     @NotNull
-    @NotBlank
-    @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$",
-            message = "Email Invalido")
+    @NotBlank(message = "No puede estar en blanco")
+    @Email(message = "Email invalido, ej: ejemplo@gmail.com")
+    @Size(max = 128, message = "No puede tener mas de 128 caracteres")
     private String email;
 
     @NotNull
-    @NotBlank
+    @NotBlank(message = "No puede estar en blanco")
+    @Pattern(regexp = "^(9[0-9]{8}|[0-9]{8}$)", message = "Telefono invalido, ej: 12345678 o 912345678")
+    @Size(max = 9, message = "No puede tener mas de 9 caracteres")
     private String phone;
 
     @CreationTimestamp

@@ -10,17 +10,23 @@
             Registration
         </h2>
         <p class="left">Nombre:</p>
-        <input type="text" th:field="*{name}"/><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        <input type="text" th:field="*{name}" size="25" maxlength="25"/><br>
+        <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         <p class="left">Apellido:</p>
-        <input type="text" th:field="*{lastname}"/><span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+        <input type="text" th:field="*{lastname}" size="25" maxlength="25"/><br>
+        <span class="error" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
         <p class="left">Password:</p>
-        <input type="password" th:field="*{pwd}"/><span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>
+        <input type="password" th:field="*{pwd}" size="25" maxlength="25"/><br>
+        <span class="error" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>
         <p class="left">Rut:</p>
-        <input type="text" th:field="*{rut}" placeholder="12345678-9"/><span th:if="${#fields.hasErrors('rut')}" th:errors="*{rut}"></span>
+        <input type="text" th:field="*{rut}" placeholder="12345678-9" size="12" maxlength="12"/><br>
+        <span class="error" th:if="${#fields.hasErrors('rut')}" th:errors="*{rut}"></span>
         <p class="left">Telefono:</p>
-        <input type="text" th:field="*{phone}"/><span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+        <input type="text" th:field="*{phone}" size="9" maxlength="9"/><br>
+        <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
         <p class="left">Email:</p>
-        <input type="text" th:field="*{email}" placeholder="example@example.com"/><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        <input type="text" th:field="*{email}" placeholder="example@example.com" size="128" maxlength="128"/><br>
+        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
         <p class="left">Tipo de cuenta:</p>
         <select th:field="*{role}">
             <option value="Basic" selected>Basic</option>
