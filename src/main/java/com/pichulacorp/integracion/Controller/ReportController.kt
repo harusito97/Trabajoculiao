@@ -1,6 +1,7 @@
 package com.pichulacorp.integracion.Controller
 
 import com.pichulacorp.integracion.CustomerDetails
+import com.pichulacorp.integracion.Entity.Customer
 import com.pichulacorp.integracion.Reporting.VisitsReport
 import com.pichulacorp.integracion.Reporting.ReservationsReport
 import com.pichulacorp.integracion.Reporting.ReservationsReport.ServiceDetail
@@ -51,14 +52,14 @@ class ReportController {
                         it.plan.price * ChronoUnit.DAYS.between(it.startdate, it.enddate)
                     }.sum()
             )
-        }?: listOf()
+        } ?: listOf()
 
         val reservationsReport = ReservationsReport(
-            serviceDetailList,
-            start.format(simpleHumanReadableFormat),
-            end.format(simpleHumanReadableFormat),
-            serviceDetailList.sumOf { it.reservas },
-            serviceDetailList.map { it.plata }.sum(),
+                serviceDetailList,
+                start.format(simpleHumanReadableFormat),
+                end.format(simpleHumanReadableFormat),
+                serviceDetailList.sumOf { it.reservas },
+                serviceDetailList.map { it.plata }.sum(),
         )
 
         model.apply {
@@ -77,18 +78,18 @@ class ReportController {
 
         val serviceClickDetails = serviceService?.getServiceByOwnerRut(customer.customer.rut)?.map { servicio ->
             val visitCount =
-                serviceVisitRepository?.countServiceVisitsByServiceAndVisitTimestampBetween(servicio, start, end)
+                    serviceVisitRepository?.countServiceVisitsByServiceAndVisitTimestampBetween(servicio, start, end)
             VisitsReport.ServiceVisitsDetail(
-                servicio.name,
-                visitCount
+                    servicio.name,
+                    visitCount
             )
-        }?: listOf()
+        } ?: listOf()
 
         val reportData = VisitsReport(
-            start.format(simpleHumanReadableFormat),
-            end.format(simpleHumanReadableFormat),
-            serviceClickDetails,
-            serviceClickDetails.sumOf { it.visits }
+                start.format(simpleHumanReadableFormat),
+                end.format(simpleHumanReadableFormat),
+                serviceClickDetails,
+                serviceClickDetails.sumOf { it.visits }
         )
 
         model.apply {
@@ -98,5 +99,14 @@ class ReportController {
         }
 
         return "VisitsReport"
+    }
+
+    @GetMapping("/DetailedServiceReport")
+    fun detailedServiceReport(model: Model, @AuthenticationPrincipal customer: CustomerDetails): String{
+        model.apply {
+            addAttribute("customer", customer.customer)
+            addAttribute("activePage", "DetailedServiceReport")
+        }
+        return "DetailedServiceReport";
     }
 }

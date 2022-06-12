@@ -175,6 +175,14 @@ th {
     color: 	#F28773;
 }
 
+.tableBorders {
+    border: solid orange 1px;
+}
+
+table{
+    border-collapse: collapse;
+}
+
 
 
 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html layout:decorate="~{SessionLayout}">
+<head>
+    <title>SmartOffer - Report</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2>Reporte Detallado de Servicios</h2>
+    <table>
+        <thead>
+        <tr>
+            <th colspan="6">Mis Servicios</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{Lista Servicios}</td>
+            <td style="color: deepskyblue">{//la lista me gustaria}</td>
+            <td style="color: deepskyblue">{//que fuera horizontal}</td>
+        </tr>
+        <tr class="tableBorders">
+            <td>Reservas esta semana</td>
+            <td>Reservas Este Mes</td>
+            <td colspan="2">Reservas semana pasada</td>
+            <td colspan="2">Reservas mes pasado</td>
+        </tr>
+        <tr>
+            <td>{reservas recibidas esta semana}</td>
+            <td>{reservas recibidas este mes}</td>
+            <td colspan="2">{reservas recibidas la semana pasada}</td>
+            <td colspan="2">{reservas recibidas el mes pasado}</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr />
+    <table>
+        <thead>
+        <tr class="tableBorders">
+            <th>Plan</th>
+            <th>Valor</th>
+            <th>Compras esta semana</th>
+            <th>Compras este mes</th>
+            <th>Recaudacion esta semana</th>
+            <th>Recaudacion semana pasada</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{Lista:nombre del plan}</td>
+            <td>{valor del plan}</td>
+            <td>{veces que se recibio una compra de este plan en la semana actual}</td>
+            <td>{veces que se recibio compra de este plan en el mes actual}</td>
+            <td>{recaudacion de la semana actual}</td>
+            <td>{recaudacion de la semana pasada}</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr />
+
+    <h1 style="color: deepskyblue">//PODEMOS PONER GRAFICOS?</h1>
+
+</div>
+</body>
+</html>

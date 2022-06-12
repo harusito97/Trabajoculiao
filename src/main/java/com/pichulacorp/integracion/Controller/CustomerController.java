@@ -30,7 +30,6 @@ public class CustomerController {
         model.addAttribute("customerForm", customerForm);
         if (result.hasErrors()) {
             model.addAttribute("Active Page", "Register");
-            System.out.println(model);
             return "Register";
         }
         try {
