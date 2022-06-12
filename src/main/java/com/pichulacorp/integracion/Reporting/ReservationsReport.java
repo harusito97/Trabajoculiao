@@ -15,7 +15,7 @@ public class ReservationsReport {
     private String startDate;
     private String endDate;
     private int reservastotal;
-    private float platatotal;
+    private Long platatotal;
 
     @Getter
     @NoArgsConstructor
@@ -23,7 +23,7 @@ public class ReservationsReport {
     public static class ServiceDetail {
         private String name;
         private int reservas;
-        private float plata;
+        private Long plata;
     }
 
 }

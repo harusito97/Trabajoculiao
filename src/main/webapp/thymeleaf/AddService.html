@@ -11,19 +11,19 @@
         <form th:action="@{/AddService}" th:object="${service}" method="post">
             <h2>Agregar Servicio</h2>
             <p class="left">Nombre:</p>
-            <input type="text" th:field="*{name}" maxlength="50" size="50"/>
+            <input type="text" th:field="*{name}" maxlength="50" size="50"/><br>
             <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             <p class="left">Dirección: </p>
-            <input type="text" th:field="*{address}" maxlength="50" size="50"/>
+            <input type="text" th:field="*{address}" maxlength="50" size="50"/><br>
             <span class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
             <p class="left">Telefono: </p>
-            <input type="text" th:field="*{phone}" maxlength="9" size="9"/>
+            <input type="text" th:field="*{phone}" maxlength="9" size="9"/><br>
             <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
             <p class="left">Email: </p>
-            <input type="text" th:field="*{email}" maxlength="128" size="128"/>
+            <input type="text" th:field="*{email}" maxlength="128" size="128"/><br>
             <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             <p class="left">Descripcion: </p>
-            <textarea maxlength="512" th:field="*{description}"></textarea>
+            <textarea maxlength="512" th:field="*{description}"></textarea><br>
             <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
             <input type="submit" value="Agregar"/>
         </form>

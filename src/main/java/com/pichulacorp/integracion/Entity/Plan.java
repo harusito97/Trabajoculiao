@@ -12,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import javax.validation.groups.ConvertGroup;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +34,12 @@ public class Plan {
     @Size(min = 2, max = 25, message = "Debe tener entre 2 a 25 caracteres")
     private String name;
 
-    @NotNull
+    @javax.validation.constraints.NotNull(message = "No puede estar en blanco")
     @Min(value = 0, message = "El valor no puede ser menor a 0")
-    private float price = 0;
+    private Long price;
 
     @NotNull
-    @NotBlank
+    @NotBlank(message = "Agrega una descripcion")
     @Size(max = 512, message = "No pueden ser mas de 512 caracteres")
     private String description;
 

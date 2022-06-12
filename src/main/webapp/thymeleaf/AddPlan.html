@@ -11,13 +11,13 @@
         <form th:action="@{/AddPlan/{id}(id=${serviceid})}" th:object="${plan}" method="post">
             <h2>Agregar Plan</h2>
             <p class="left">Nombre </p>
-            <input type="text" th:field="*{name}" maxlength="50" size="50"/>
+            <input type="text" th:field="*{name}" maxlength="50" size="50"/><br>
             <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             <p class="left">Precio </p>
-            <input type="number"  step="any" th:field="*{price}" maxlength="10" size="10"/>
+            <input type="number"  step="any" th:field="*{price}" maxlength="10" size="10"/><br>
             <span class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
             <p class="left">Descripcion </p>
-            <textarea maxlength="512" th:field="*{description}"></textarea>
+            <textarea maxlength="512" th:field="*{description}"></textarea><br>
             <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
             <p>Mon<input value=false type="checkbox" th:field="*{availableMonday}" />
                 Tue<input value=false type="checkbox" th:field="*{availableTuesday}" />
@@ -26,6 +26,7 @@
                 Fri<input value=false type="checkbox" th:field="*{availableFriday}" />
                 Sat<input value=false type="checkbox" th:field="*{availableSaturday}" />
                 Sun<input value=false type="checkbox" th:field="*{availableSunday}" /></p>
+            <br>
             <span class="error" th:if="${#fields.hasErrors('availableMonday')}" th:errors="*{availableMonday}"></span>
             <span class="error" th:if="${#fields.hasErrors('availableTuesday')}" th:errors="*{availableTuesday}"></span>
             <span class="error" th:if="${#fields.hasErrors('availableWednesday')}" th:errors="*{availableWednesday}"></span>

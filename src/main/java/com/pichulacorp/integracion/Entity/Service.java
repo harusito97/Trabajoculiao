@@ -41,8 +41,8 @@ public class Service {
     @Size(max = 512, message = "No pueden ser mas de 512 caracteres")
     private String description;
 
-    @NotBlank
     @NotNull
+    @NotBlank(message = "Ingresa una direccion")
     @Size(max = 75, message = "No pueden ser mas de 75 caracteres")
     private String address;
 

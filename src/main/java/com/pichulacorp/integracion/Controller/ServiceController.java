@@ -67,10 +67,10 @@ public class ServiceController {
 
     @PostMapping("/EditService/{id}")
     public String editServiceSave(Model model, @Valid Service service, BindingResult result, @AuthenticationPrincipal CustomerDetails customer){
-        model.addAttribute("customer",customer.getCustomer());
         if (result.hasErrors()){
-            model.addAttribute("activePage", "EditService");
-            return "/EditService/{id}";
+            model.addAttribute("service", service);
+            model.addAttribute("customer",customer.getCustomer());
+            return "EditService";
         }
         try {
             Service newservice = myservice.updateService(service, customer);
