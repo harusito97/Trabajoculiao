@@ -3,6 +3,7 @@ package com.pichulacorp.integracion.Controller;
 
 import javax.validation.Valid;
 
+import com.pichulacorp.integracion.CustomerForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.pichulacorp.integracion.Entity.Customer;
@@ -24,14 +26,15 @@ public class CustomerController {
     private CustomerService service;
 
     @PostMapping( "/Register")
-    public String addCustomer(Model model, @Valid Customer customer, BindingResult result){
-        model.addAttribute("customer", customer);
+    public String addCustomer(Model model, @Valid CustomerForm customerForm, BindingResult result) {
+        model.addAttribute("customerForm", customerForm);
         if (result.hasErrors()) {
             model.addAttribute("Active Page", "Register");
+            System.out.println(model);
             return "Register";
         }
         try {
-            service.saveCustomer(customer);
+            service.saveCustomer(customerForm);
             return "redirect:/Login";
         }catch(DataAccessException e){
             logger.error("Se fue a la chucha", e);

@@ -1,5 +1,6 @@
 package com.pichulacorp.integracion.Service;
 
+import com.pichulacorp.integracion.CustomerForm;
 import com.pichulacorp.integracion.Entity.Customer;
 import com.pichulacorp.integracion.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,33 @@ public class CustomerService {
     @Autowired
     private CustomerRepository repository;
 
+    public Customer saveCustomer(CustomerForm customerForm) {
+        Customer customer = toCustomer(customerForm);
+        return repository.save(customer);
+    }
+
     public Customer saveCustomer(Customer customer) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encodedpw = bCryptPasswordEncoder.encode(customer.getPwd());
         customer.setPwd(encodedpw);
         return repository.save(customer);
+    }
+
+    private Customer toCustomer(CustomerForm customerForm) {
+        Customer customer = new Customer();
+        customer.setEmail(customerForm.getEmail());
+        customer.setName(customerForm.getName());
+        customer.setLastname(customerForm.getLastname());
+        customer.setPhone(customerForm.getPhone());
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encodedpw = bCryptPasswordEncoder.encode(customerForm.getPwd());
+        customer.setPwd(encodedpw);
+
+        customer.setRole(customerForm.getRole());
+        customer.setRut(customerForm.getRut());
+
+        return customer;
     }
 
     public Customer getUserById(int id){

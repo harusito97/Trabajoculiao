@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,14 +59,14 @@ public class ServiceController {
     }
 
     @GetMapping("/EditService/{id}")
-    public String editService(Model model,@AuthenticationPrincipal CustomerDetails customer,Service service){
+    public String editService(Model model,Service service, @AuthenticationPrincipal CustomerDetails customer){
         model.addAttribute("service",myservice.getServiceById(service.getId()));
         model.addAttribute("customer",customer.getCustomer());
         return "EditService";
     }
 
     @PostMapping("/EditService/{id}")
-    public String editServiceSave(Model model, @AuthenticationPrincipal CustomerDetails customer, @Valid Service service, BindingResult result){
+    public String editServiceSave(Model model, @Valid Service service, BindingResult result, @AuthenticationPrincipal CustomerDetails customer){
         model.addAttribute("customer",customer.getCustomer());
         if (result.hasErrors()){
             model.addAttribute("activePage", "EditService");

@@ -38,10 +38,7 @@ public class Customer {
     @Size(min = 2, max = 25, message = "Debe tener entre 2 a 25 caracteres")
     private String lastname;
 
-    @Valid
     @NotNull
-    @NotBlank(message = "No puede estar en blanco")
-    @Size(min = 6, max = 25, message = "Debe tener entre 6 a 25 caracteres")
     private String pwd;
 
     @NotNull
