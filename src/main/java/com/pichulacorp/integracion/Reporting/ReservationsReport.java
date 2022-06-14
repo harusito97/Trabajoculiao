@@ -3,7 +3,6 @@ package com.pichulacorp.integracion.Reporting;
 
 import lombok.*;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @Getter
@@ -11,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ReservationsReport {
 
-    private List<ServiceDetail> serviceReports;
+    private List<ItemDetail> serviceReports;
     private String startDate;
     private String endDate;
     private int reservastotal;
@@ -20,7 +19,7 @@ public class ReservationsReport {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class ServiceDetail {
+    public static class ItemDetail {
         private String name;
         private int reservas;
         private Long plata;

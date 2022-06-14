@@ -14,13 +14,13 @@ public class VisitsReport {
     private String startDate;
     private String endDate;
 
-    private List<ServiceVisitsDetail> serviceDetail;
+    private List<ItemDetail> serviceDetail;
     private Long totalVisits;
 
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
-    public static class ServiceVisitsDetail {
+    public static class ItemDetail {
         private String name;
         private Long visits;
     }
