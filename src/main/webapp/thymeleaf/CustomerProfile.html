@@ -5,7 +5,13 @@
 </head>
 <body>
 <div class="contact-container" layout:fragment="content">
-    My Profile
+    <h2 th:text="${customer.getName()}+' '+${customer.getLastname()}"></h2>
+    <p th:text="'Rut: '+${customer.getRut()}"></p>
+    <p th:text="'Telefono: '+${customer.getPhone()}"></p>
+    <p th:text="'Email: '+${customer.getEmail()}"></p>
+    <p th:text="'Rol: '+${customer.getRole()}"></p>
+    <p th:text="'Fecha de registro: '+${customer.getCreationdate()}"></p>
+    <a th:text="Editar" th:href="@{/EditProfile}">Editar</a>
 </div>
 </body>
 </html>

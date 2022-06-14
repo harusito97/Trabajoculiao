@@ -57,9 +57,8 @@ public class CustomerService {
         return repository.findAll();
     }
 
-    public String deleteUser(int id){
+    public void deleteCustomer(int id){
         repository.deleteById(id);
-        return "user removed !!"+id;
     }
 
     public Customer updateUser(Customer customer){
@@ -74,7 +73,15 @@ public class CustomerService {
     }
 
 
-
-
-
+    public Customer updateCustomer(CustomerForm customer) {
+        Customer actualCustomer = repository.findByRut(customer.getRut()).orElse(new Customer());
+        actualCustomer.setName(customer.getName());
+        actualCustomer.setLastname(customer.getLastname());
+        actualCustomer.setPwd(customer.getPwd());
+        actualCustomer.setRut(customer.getRut());
+        actualCustomer.setEmail(customer.getEmail());
+        actualCustomer.setPhone(customer.getPhone());
+        deleteCustomer(actualCustomer.getId());
+        return repository.save(actualCustomer);
+    }
 }
