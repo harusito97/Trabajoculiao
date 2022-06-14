@@ -140,8 +140,8 @@ class ReportController {
                 planObj.price,
                 thisWeek.count { it.plan.id == plan.id }.toLong(),
                 thisMonth.count { it.plan.id == plan.id }.toLong(),
-                planObj.price * thisWeek.count { it.plan.id == plan.id },
-                planObj.price * lastWeek.count { it.plan.id == plan.id },
+                planObj.price * thisWeek.filter { it.plan.id == plan.id }.sumOf { ChronoUnit.DAYS.between(it.startdate, it.enddate) },
+                planObj.price * lastWeek.filter { it.plan.id == plan.id }.sumOf { ChronoUnit.DAYS.between(it.startdate, it.enddate) },
             )
         }
 
