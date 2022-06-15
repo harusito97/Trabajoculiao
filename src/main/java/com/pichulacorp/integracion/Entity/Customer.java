@@ -5,6 +5,7 @@ import com.pichulacorp.integracion.Security.Roles;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -21,7 +22,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString(exclude = {"services"})
-@Table(name = "Customer")
+@Table(name = "Customer", uniqueConstraints = @UniqueConstraint(columnNames = "rut"))
+@DynamicUpdate
 public class Customer {
 
     @Id

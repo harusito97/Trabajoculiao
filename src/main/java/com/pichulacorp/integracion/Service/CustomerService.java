@@ -74,14 +74,13 @@ public class CustomerService {
 
 
     public Customer updateCustomer(CustomerForm customer) {
-        Customer actualCustomer = repository.findByRut(customer.getRut()).orElse(new Customer());
+        Customer actualCustomer = repository.getCustomerByRut(customer.getRut()).orElse(null);
         actualCustomer.setName(customer.getName());
         actualCustomer.setLastname(customer.getLastname());
         actualCustomer.setPwd(customer.getPwd());
-        actualCustomer.setRut(customer.getRut());
         actualCustomer.setEmail(customer.getEmail());
         actualCustomer.setPhone(customer.getPhone());
-        deleteCustomer(actualCustomer.getId());
+        System.out.println(actualCustomer);
         return repository.save(actualCustomer);
     }
 }
