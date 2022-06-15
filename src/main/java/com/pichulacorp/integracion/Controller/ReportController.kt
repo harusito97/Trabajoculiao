@@ -1,12 +1,11 @@
 package com.pichulacorp.integracion.Controller
 
 import com.pichulacorp.integracion.CustomerDetails
-import com.pichulacorp.integracion.Entity.Reservation
 import com.pichulacorp.integracion.Entity.Service
-import com.pichulacorp.integracion.Reporting.VisitsReport
+import com.pichulacorp.integracion.Reporting.ReportBuilder
 import com.pichulacorp.integracion.Reporting.ReservationsReport
 import com.pichulacorp.integracion.Reporting.ReservationsReport.ItemDetail
-import com.pichulacorp.integracion.Reporting.ServiceReport
+import com.pichulacorp.integracion.Reporting.VisitsReport
 import com.pichulacorp.integracion.Repository.PlanRepository
 import com.pichulacorp.integracion.Repository.ServiceVisitRepository
 import com.pichulacorp.integracion.Service.ReservationService
@@ -16,13 +15,22 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.thymeleaf.TemplateEngine
+import org.thymeleaf.context.WebContext
+import org.thymeleaf.context.WebEngineContext
+import org.xhtmlrenderer.pdf.ITextRenderer
+import java.io.OutputStreamWriter
 import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.OffsetDateTime
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoField
 import java.time.temporal.ChronoUnit
+import javax.servlet.ServletContext
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
+
 
 @Controller
 class ReportController {
@@ -37,6 +45,15 @@ class ReportController {
 
     @Autowired
     lateinit var serviceService: ServiceService
+
+    @Autowired
+    lateinit var reportBuilder: ReportBuilder
+
+    @Autowired
+    lateinit var templateEngine: TemplateEngine
+
+    @Autowired
+    lateinit var httpServletContext: ServletContext
 
     private val simpleHumanReadableFormat: DateTimeFormatter = DateTimeFormatter.RFC_1123_DATE_TIME
 
@@ -121,45 +138,37 @@ class ReportController {
         }
     }
 
-    @GetMapping("/ServiceReport/{id}")
-    fun serviceReport(model: Model, servicio: Service, @AuthenticationPrincipal customer: CustomerDetails): String{
-        val today = ZonedDateTime.now()
-        val dates = ReportIntervals.fromDate(today)
+    @GetMapping("/ServiceReportPdf/{id}")
+    fun serviceReportPdf(model: Model, servicio: Service, @AuthenticationPrincipal customer: CustomerDetails, servletRequest: HttpServletRequest, servletResponse: HttpServletResponse) {
 
-        val servicioObj = serviceService.getServiceById(servicio.id)
+        val reportData = reportBuilder.buildServiceReport(servicio, customer)
 
-        val lastMonth = reservationService.getMyReservations(servicioObj, dates.lastMonthStart, dates.lastMonthEnd)
-        val lastWeek = reservationService.getMyReservations(servicioObj, dates.lastWeekStart, dates.lastWeekEnd)
-        val thisMonth = reservationService.getMyReservations(servicioObj, dates.thisMonthStart, dates.thisMonthEnd)
-        val thisWeek = reservationService.getMyReservations(servicioObj, dates.thisWeekStart, dates.thisWeekEnd)
+        val context = WebContext(servletRequest, servletResponse, httpServletContext)
 
-        val planDetails = servicioObj.plan.map { plan ->
-            val planObj = planRepository.findPlanById(plan.id)
-            ServiceReport.PlanDetail(
-                planObj.name,
-                planObj.price,
-                thisWeek.count { it.plan.id == plan.id }.toLong(),
-                thisMonth.count { it.plan.id == plan.id }.toLong(),
-                planObj.price * thisWeek.filter { it.plan.id == plan.id }.sumOf { ChronoUnit.DAYS.between(it.startdate, it.enddate) },
-                planObj.price * lastWeek.filter { it.plan.id == plan.id }.sumOf { ChronoUnit.DAYS.between(it.startdate, it.enddate) },
-            )
+        context.apply {
+            setVariable("customer", customer.customer)
+            setVariable("activePage", "DetailedServiceReport")
+            setVariable("reportData", reportData)
         }
 
-        val serviceDetail = ServiceReport.ServiceDetail(
-            servicioObj.name,
-            thisWeek.count().toLong(),
-            thisMonth.count().toLong(),
-            lastWeek.count().toLong(),
-            lastMonth.count().toLong(),
-        )
+        val id = servicio.id
+        val date = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
 
-        val allServices = serviceService.getAllMyServices(customer.customer)
+        servletResponse.contentType = "application/pdf"
+        servletResponse.setHeader("Content-Disposition", "attachment; filename=service_report_${id}_${date}.pdf")
 
-        val reportData = ServiceReport(
-            allServices,
-            planDetails,
-            serviceDetail,
-        )
+        val processedHtml = templateEngine.process("ServiceReport", context)
+
+        ITextRenderer().apply {
+            setDocumentFromString(processedHtml)
+            layout()
+            createPDF(servletResponse.outputStream)
+        }
+    }
+
+    @GetMapping("/ServiceReport/{id}")
+    fun serviceReport(model: Model, servicio: Service, @AuthenticationPrincipal customer: CustomerDetails): String{
+        val reportData = reportBuilder.buildServiceReport(servicio, customer)
 
         model.apply {
             addAttribute("customer", customer.customer)
