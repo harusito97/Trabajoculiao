@@ -4,11 +4,13 @@ import com.pichulacorp.integracion.Controller.ReportController
 import com.pichulacorp.integracion.CustomerDetails
 import com.pichulacorp.integracion.Entity.Service
 import com.pichulacorp.integracion.Repository.PlanRepository
+import com.pichulacorp.integracion.Repository.ServiceVisitRepository
 import com.pichulacorp.integracion.Service.ReservationService
 import com.pichulacorp.integracion.Service.ServiceService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 @Component
@@ -22,6 +24,11 @@ class ReportBuilder {
 
     @Autowired
     lateinit var planRepository: PlanRepository
+
+    @Autowired
+    lateinit var serviceVisitRepository: ServiceVisitRepository
+
+    private val simpleHumanReadableFormat: DateTimeFormatter = DateTimeFormatter.RFC_1123_DATE_TIME
 
     fun buildServiceReport(servicio: Service, customer: CustomerDetails): ServiceReport {
         val today = ZonedDateTime.now()
@@ -60,6 +67,51 @@ class ReportBuilder {
             allServices,
             planDetails,
             serviceDetail,
+        )
+    }
+
+    fun visitsReport(customer: CustomerDetails): VisitsReport {
+        val end = ZonedDateTime.now()
+        val start = end.minus(1, ChronoUnit.MONTHS)
+
+        val serviceClickDetails = serviceService.getServiceByOwnerRut(customer.customer.rut)?.map { servicio ->
+            val visitCount =
+                serviceVisitRepository.countServiceVisitsByServiceAndVisitTimestampBetween(servicio, start, end)
+            VisitsReport.ItemDetail(
+                servicio.name,
+                visitCount
+            )
+        } ?: listOf()
+
+        return VisitsReport(
+            start.format(simpleHumanReadableFormat),
+            end.format(simpleHumanReadableFormat),
+            serviceClickDetails,
+            serviceClickDetails.sumOf { it.visits }
+        )
+    }
+
+    fun reservationsReport(customer: CustomerDetails): ReservationsReport {
+        val end = ZonedDateTime.now()
+        val start = end.minus(1, ChronoUnit.MONTHS)
+
+        val itemDetailList = serviceService.getServiceByOwnerRut(customer.customer.rut)?.map { servicio ->
+            val myReservations = reservationService.getMyReservations(servicio, start, end) ?: listOf()
+            ReservationsReport.ItemDetail(
+                servicio.name,
+                myReservations.size,
+                myReservations.sumOf {
+                    it.plan.price * ChronoUnit.DAYS.between(it.startdate, it.enddate)
+                }
+            )
+        } ?: listOf()
+
+        return ReservationsReport(
+            itemDetailList,
+            start.format(simpleHumanReadableFormat),
+            end.format(simpleHumanReadableFormat),
+            itemDetailList.sumOf { it.reservas },
+            itemDetailList.sumOf { it.plata },
         )
     }
 }
