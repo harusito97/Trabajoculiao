@@ -53,11 +53,12 @@ public class CustomerController {
     }
 
     @PostMapping("/EditProfile")
-    public String saveCustomerProfile(Model model, @Valid CustomerForm customerForm, BindingResult result){
+    public String saveCustomerProfile(Model model, @Valid CustomerForm customerForm, BindingResult result, @AuthenticationPrincipal CustomerDetails customer){
         model.addAttribute("customerForm", customerForm);
         if (result.hasErrors()) {
-            model.addAttribute("Active Page", "Register");
-            return "Register";
+            model.addAttribute("customer", customer.getCustomer());
+            model.addAttribute("activePage", "EditProfile");
+            return "EditProfile";
         }
         try {
             service.updateCustomer(customerForm);

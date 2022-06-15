@@ -74,10 +74,12 @@ public class CustomerService {
 
 
     public Customer updateCustomer(CustomerForm customer) {
-        Customer actualCustomer = repository.getCustomerByRut(customer.getRut()).orElse(null);
+        Customer actualCustomer = repository.getCustomerByRut(customer.getRut()).orElse(new Customer());
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encodedpw = bCryptPasswordEncoder.encode(customer.getPwd());
         actualCustomer.setName(customer.getName());
         actualCustomer.setLastname(customer.getLastname());
-        actualCustomer.setPwd(customer.getPwd());
+        actualCustomer.setPwd(encodedpw);
         actualCustomer.setEmail(customer.getEmail());
         actualCustomer.setPhone(customer.getPhone());
         System.out.println(actualCustomer);

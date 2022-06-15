@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html layout:decorate="~{Layout}">
+<html layout:decorate="~{SessionLayout}">
 <head>
     <title>SmartOffer - Registro</title>
 </head>
 <body>
 <div id="form_container" layout:fragment="content">
-    <form th:action="@{/Register}" th:object="${customerForm}" method="post">
+    <form th:action="@{/EditProfile}" th:object="${customerForm}" method="post">
         <h2>
-            Registration
+            Editar Perfil
         </h2>
         <p class="left">Nombre:</p>
         <input type="text" th:field="*{name}" size="25" maxlength="25"/><br>
