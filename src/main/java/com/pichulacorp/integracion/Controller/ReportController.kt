@@ -12,12 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.WebContext
 import org.xhtmlrenderer.pdf.ITextRenderer
-import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.ZoneOffset
-import java.time.ZonedDateTime
-import java.time.temporal.ChronoField
-import java.time.temporal.ChronoUnit
 import javax.servlet.ServletContext
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -99,7 +95,7 @@ class ReportController {
         servletResponse.contentType = "application/pdf"
         servletResponse.setHeader("Content-Disposition", "attachment; filename=service_report_${id}_${date}.pdf")
 
-        val processedHtml = templateEngine.process("ServiceReport", context)
+        val processedHtml = templateEngine.process("ServiceReportPdf", context)
 
         ITextRenderer().apply {
             setDocumentFromString(processedHtml)

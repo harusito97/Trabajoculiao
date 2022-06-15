@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/css/home.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2 style="text-align: center">Reporte de Servicios</h2>
+    <h3 th:text="'Servicio: '+${reportData.serviceDetail.name}"></h3>
+    <table>
+        <thead>
+        <tr class="tableBorders">
+            <td>Reservas esta semana</td>
+            <td>Reservas Este Mes</td>
+            <td>Reservas semana pasada</td>
+            <td>Reservas mes pasado</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${reportData.serviceDetail.thisWeekCount}"></td>
+            <td th:text="${reportData.serviceDetail.thisMonthCount}"></td>
+            <td th:text="${reportData.serviceDetail.lastWeekCount}"></td>
+            <td th:text="${reportData.serviceDetail.lastMonthCount}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <div th:each="planDetail : ${reportData.getPlanDetailList()}">
+        <h3 th:text="'Plan: '+${planDetail.name}"></h3>
+        <p th:text="'Valor: $'+${planDetail.price}"></p>
+        <h4>Compras</h4>
+        <p th:text="'Esta semana: '+${planDetail.thisWeekCount}"></p>
+        <p th:text="'Este Mes: '+${planDetail.thisMonthCount}"></p>
+        <h4>Recaudacion</h4>
+        <p th:text="'Esta semana: $'+${planDetail.thisWeekSum}"></p>
+        <p th:text="'Semana pasada: $'+${planDetail.lastWeekSum}"></p>
+    </div>
+    <hr/>
+
+</div>
+</body>
+</html>
