@@ -61,7 +61,8 @@ public class CustomerController {
             return "EditProfile";
         }
         try {
-            service.updateCustomer(customerForm);
+            Customer updateCustomer = service.updateCustomer(customerForm);
+            customer.setCustomer(updateCustomer);
             return "redirect:/CustomerProfile";
         }catch(DataAccessException e){
             logger.error("Se fue a la chucha", e);

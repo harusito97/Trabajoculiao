@@ -3,6 +3,7 @@ package com.pichulacorp.integracion;
 import com.pichulacorp.integracion.Entity.Customer;
 import com.pichulacorp.integracion.Security.Privileges;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,7 @@ import java.util.Collection;
 public class CustomerDetails implements UserDetails {
 
     @Getter
+    @Setter
     private Customer customer;
 
     public CustomerDetails(Customer customer){
