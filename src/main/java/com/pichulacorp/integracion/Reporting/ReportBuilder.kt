@@ -1,6 +1,5 @@
 package com.pichulacorp.integracion.Reporting
 
-import com.pichulacorp.integracion.Controller.ReportController
 import com.pichulacorp.integracion.CustomerDetails
 import com.pichulacorp.integracion.Entity.Service
 import com.pichulacorp.integracion.Repository.PlanRepository
@@ -9,8 +8,10 @@ import com.pichulacorp.integracion.Service.ReservationService
 import com.pichulacorp.integracion.Service.ServiceService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import java.time.DayOfWeek
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoField
 import java.time.temporal.ChronoUnit
 
 @Component
@@ -32,7 +33,7 @@ class ReportBuilder {
 
     fun buildServiceReport(servicio: Service, customer: CustomerDetails): ServiceReport {
         val today = ZonedDateTime.now()
-        val dates = ReportController.ReportIntervals.fromDate(today)
+        val dates = ReportIntervals.fromDate(today)
 
         val servicioObj = serviceService.getServiceById(servicio.id)
 
@@ -113,5 +114,41 @@ class ReportBuilder {
             itemDetailList.sumOf { it.reservas },
             itemDetailList.sumOf { it.plata },
         )
+    }
+
+    data class ReportIntervals(
+        val lastWeekStart: ZonedDateTime,
+        val lastWeekEnd: ZonedDateTime,
+        val lastMonthStart: ZonedDateTime,
+        val lastMonthEnd: ZonedDateTime,
+        val thisWeekStart: ZonedDateTime,
+        val thisWeekEnd: ZonedDateTime,
+        val thisMonthStart: ZonedDateTime,
+        val thisMonthEnd: ZonedDateTime,
+    ) {
+        companion object {
+            fun fromDate(now: ZonedDateTime): ReportIntervals {
+                val dateOnly = now.truncatedTo(ChronoUnit.DAYS)
+
+                val thisWeekStart = dateOnly.with(ChronoField.DAY_OF_WEEK, DayOfWeek.MONDAY.value.toLong())
+                val thisWeekEnd = thisWeekStart.plusWeeks(1)
+
+                val thisMonthStart = dateOnly.withDayOfMonth(1)
+                val thisMonthEnd = thisMonthStart.plusMonths(1)
+
+                val lastWeekStart = thisWeekStart.minusWeeks(1)
+                val lastWeekEnd = lastWeekStart.plusWeeks(1)
+
+                val lastMonthStart = dateOnly.minusMonths(1).withDayOfMonth(1)
+                val lastMonthEnd = lastMonthStart.plusMonths(1)
+
+                return ReportIntervals(
+                    lastWeekStart, lastWeekEnd,
+                    lastMonthStart, lastMonthEnd,
+                    thisWeekStart, thisWeekEnd,
+                    thisMonthStart, thisMonthEnd
+                )
+            }
+        }
     }
 }

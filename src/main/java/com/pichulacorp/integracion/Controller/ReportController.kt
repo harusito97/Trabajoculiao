@@ -120,41 +120,4 @@ class ReportController {
 
         return "ServiceReport";
     }
-
-    data class ReportIntervals(
-        val lastWeekStart: ZonedDateTime,
-        val lastWeekEnd: ZonedDateTime,
-        val lastMonthStart: ZonedDateTime,
-        val lastMonthEnd: ZonedDateTime,
-        val thisWeekStart: ZonedDateTime,
-        val thisWeekEnd: ZonedDateTime,
-        val thisMonthStart: ZonedDateTime,
-        val thisMonthEnd: ZonedDateTime,
-    ) {
-        companion object {
-            fun fromDate(now: ZonedDateTime): ReportIntervals {
-                val dateOnly = now.truncatedTo(ChronoUnit.DAYS)
-
-                val thisWeekStart = dateOnly.with(ChronoField.DAY_OF_WEEK, DayOfWeek.MONDAY.value.toLong())
-                val thisWeekEnd = thisWeekStart.plusWeeks(1)
-
-                val thisMonthStart = dateOnly.withDayOfMonth(1)
-                val thisMonthEnd = thisMonthStart.plusMonths(1)
-
-                val lastWeekStart = thisWeekStart.minusWeeks(1)
-                val lastWeekEnd = lastWeekStart.plusWeeks(1)
-
-                val lastMonthStart = dateOnly.minusMonths(1).withDayOfMonth(1)
-                val lastMonthEnd = lastMonthStart.plusMonths(1)
-
-                return ReportIntervals(
-                    lastWeekStart, lastWeekEnd,
-                    lastMonthStart, lastMonthEnd,
-                    thisWeekStart, thisWeekEnd,
-                    thisMonthStart, thisMonthEnd
-                )
-            }
-        }
-    }
-
 }
