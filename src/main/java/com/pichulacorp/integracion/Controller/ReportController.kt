@@ -53,6 +53,30 @@ class ReportController {
         return "ReservationReport"
     }
 
+    @GetMapping("/ReservationReportPdf")
+    fun reservationReportPdf(model: Model, @AuthenticationPrincipal customer: CustomerDetails,  servletRequest: HttpServletRequest, servletResponse: HttpServletResponse) {
+        val reservationsReport = reportBuilder.reservationsReport(customer)
+        val date = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
+        val context = WebContext(servletRequest, servletResponse, httpServletContext)
+
+        context.apply {
+            setVariable("customer", customer.customer)
+            setVariable("activePage", "DetailedServiceReport")
+            setVariable("reportData", reservationsReport)
+        }
+
+        servletResponse.contentType = "application/pdf"
+        servletResponse.setHeader("Content-Disposition", "attachment; filename=reservation_report_${date}.pdf")
+
+        val processedHtml = templateEngine.process("ReservationReportPdf", context)
+
+        ITextRenderer().apply {
+            setDocumentFromString(processedHtml)
+            layout()
+            createPDF(servletResponse.outputStream)
+        }
+    }
+
     @GetMapping("/VisitsReport")
     fun visitsReport(model: Model, @AuthenticationPrincipal customer: CustomerDetails): String {
 
