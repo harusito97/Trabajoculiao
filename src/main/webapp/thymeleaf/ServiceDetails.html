@@ -4,57 +4,57 @@
     <title>SmartOffer - Contacto</title>
 </head>
 <body>
-<div class="contact-container" layout:fragment="content">
-    <hr />
-    <div id="customerprofile-container">
-        <h2 th:text="${service.getName()}"></h2>
-        <p th:text="'Direccion: '+${service.getAddress()}"></p>
-        <p th:text="'Email: '+${service.getEmail()}"></p>
-        <p th:text="'Telefono: +'+${service.getPhone()}"></p>
-        <a th:text="Editar" th:href="@{/EditService/{id}(id=${service.id})}">Editar</a>
-    </div>
-    <hr />
-    <h2>Planes</h2>
-    <a th:href="@{/AddPlan/{id}(id=${service.id})}">Add Plan</a>
-    <table>
+<div class="container box" layout:fragment="content">
+    <div class="content">
+        <div>
+            <h2 th:text="${service.getName()}"></h2>
+            <p th:text="'Direccion: '+${service.getAddress()}"></p>
+            <p th:text="'Email: '+${service.getEmail()}"></p>
+            <p th:text="'Telefono: +'+${service.getPhone()}"></p>
+            <a class="button is-light is-warning" th:text="Editar" th:href="@{/EditService/{id}(id=${service.id})}">Editar</a>
+        </div>
+        <hr />
+        <h2>Planes</h2>
+        <a class="button is-light is-primary" th:href="@{/AddPlan/{id}(id=${service.id})}">Add Plan</a>
         <table>
-            <thead>
-            <th> Plan</th>
-            <th> Precio</th>
-            <th> Descripcion</th>
-            <th colspan="7"> Disponibilidad</th>
-            <th colspan="2">Options</th>
-            </thead>
-            <tbody>
-            <tr th:if="${#lists.isEmpty(plans)}">
-                <td>
-                    No existe ningun plan.
-                </td>
-            </tr>
-            <tr th:each="plan : ${plans}">
-                <td>
-                    <span th:text="${plan.name}"></span>
-                </td>
-                <td>
-                    <span th:text="${plan.price}"></span>
-                </td>
-                <td>
-                    <span th:text="${plan.description}"></span>
-                </td>
-                <td><p th:text="${plan.availableMonday} ? 'Mon' : ''"></p></td>
-                <td><p th:text="${plan.availableTuesday} ? 'Tue' : ''"></p></td>
-                <td><p th:text="${plan.availableWednesday} ? 'Wed' : ''"></p></td>
-                <td><p th:text="${plan.availableThursday} ? 'Thu' : ''"></p></td>
-                <td><p th:text="${plan.availableFriday} ? 'Fri' : ''"></p></td>
-                <td><p th:text="${plan.availableSaturday} ? 'Sat' : ''"></p></td>
-                <td><p th:text="${plan.availableSunday} ? 'Sun' : ''"></p></td>
-                <td><a th:text="Editar" th:href="@{/EditPlan/{id}(id=${plan.id})}">Editar</a></td>
-                <td><a th:text="Eliminar" th:href="@{/DeletePlan/{id}(id=${plan.id})}">Delete</a></td>
-            </tr>
-
-            </tbody>
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                <th> Plan</th>
+                <th> Precio</th>
+                <th> Descripcion</th>
+                <th colspan="7"> Disponibilidad</th>
+                <th colspan="2">Options</th>
+                </thead>
+                <tbody>
+                <tr th:if="${#lists.isEmpty(plans)}">
+                    <td>
+                        No existe ningun plan.
+                    </td>
+                </tr>
+                <tr th:each="plan : ${plans}">
+                    <td>
+                        <span th:text="${plan.name}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${plan.price}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${plan.description}"></span>
+                    </td>
+                    <td><p th:text="${plan.availableMonday} ? 'Mon' : ''"></p></td>
+                    <td><p th:text="${plan.availableTuesday} ? 'Tue' : ''"></p></td>
+                    <td><p th:text="${plan.availableWednesday} ? 'Wed' : ''"></p></td>
+                    <td><p th:text="${plan.availableThursday} ? 'Thu' : ''"></p></td>
+                    <td><p th:text="${plan.availableFriday} ? 'Fri' : ''"></p></td>
+                    <td><p th:text="${plan.availableSaturday} ? 'Sat' : ''"></p></td>
+                    <td><p th:text="${plan.availableSunday} ? 'Sun' : ''"></p></td>
+                    <td><a class="button is-light is-warning" th:text="Editar" th:href="@{/EditPlan/{id}(id=${plan.id})}">Editar</a></td>
+                    <td><a class="button is-light is-danger" th:text="Eliminar" th:href="@{/DeletePlan/{id}(id=${plan.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
         </table>
-    </table>
+    </div>
 </div>
 </body>
 </html>

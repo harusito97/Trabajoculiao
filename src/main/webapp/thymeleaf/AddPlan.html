@@ -4,40 +4,77 @@
     <title>SmartOffer - Agregar Servicio</title>
 </head>
 <body>
-<div id="main_container" layout:fragment="content">
-    <h1>SMART OFFER APP - ADMIN</h1>
-    <hr/>
-    <div id="form_container">
-        <form th:action="@{/AddPlan/{id}(id=${serviceid})}" th:object="${plan}" method="post">
-            <h2>Agregar Plan</h2>
-            <p class="left">Nombre </p>
-            <input type="text" th:field="*{name}" maxlength="50" size="50"/><br>
-            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-            <p class="left">Precio </p>
-            <input type="number"  step="any" th:field="*{price}" maxlength="10" size="10"/><br>
-            <span class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
-            <p class="left">Descripcion </p>
-            <textarea maxlength="512" th:field="*{description}"></textarea><br>
-            <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-            <p>Mon<input value=false type="checkbox" th:field="*{availableMonday}" />
-                Tue<input value=false type="checkbox" th:field="*{availableTuesday}" />
-                Wed<input value=false type="checkbox" th:field="*{availableWednesday}" />
-                Thu<input value=false type="checkbox" th:field="*{availableThursday}" />
-                Fri<input value=false type="checkbox" th:field="*{availableFriday}" />
-                Sat<input value=false type="checkbox" th:field="*{availableSaturday}" />
-                Sun<input value=false type="checkbox" th:field="*{availableSunday}" /></p>
-            <br>
-            <span class="error" th:if="${#fields.hasErrors('availableMonday')}" th:errors="*{availableMonday}"></span>
-            <span class="error" th:if="${#fields.hasErrors('availableTuesday')}" th:errors="*{availableTuesday}"></span>
-            <span class="error" th:if="${#fields.hasErrors('availableWednesday')}" th:errors="*{availableWednesday}"></span>
-            <span class="error" th:if="${#fields.hasErrors('availableThursday')}" th:errors="*{availableThursday}"></span>
-            <span class="error" th:if="${#fields.hasErrors('availableFriday')}" th:errors="*{availableFriday}"></span>
-            <span class="error" th:if="${#fields.hasErrors('availableSaturday')}" th:errors="*{availableSaturday}"></span>
-            <span class="error" th:if="${#fields.hasErrors('availableSunday')}" th:errors="*{availableSunday}"></span>
-            <input type="submit" value="Agregar" />
-        </form>
+<div class="container" layout:fragment="content">
+    <div class="content">
+        <div class="columns is-centered">
+            <div class="column is-half box">
+                <h1>Agregar Plan</h1>
+                <hr/>
+                <form th:action="@{/EditPlan/{id}(id=${plan.id})}" th:object="${plan}" method="post">
+                    <div class="field">
+                        <label class="label">Nombre </label>
+                        <div class="control"><input class="input" type="text" th:field="*{name}" maxlength="50"
+                                                    size="50"/></div>
+                        <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Precio </label>
+                        <div class="control"><input class="input" type="number" step="any" th:field="*{price}"
+                                                    maxlength="10" size="10"/>
+                        </div>
+                        <span class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Descripcion </label>
+                        <div class="control"><textarea class="input" maxlength="512"
+                                                       th:field="*{description}"></textarea><br>
+                        </div>
+                        <span class="error" th:if="${#fields.hasErrors('description')}"
+                              th:errors="*{description}"></span>
+                    </div>
+                    <div class="field is-grouped is-grouped-centered tags">
+                        <div class="tag is-light is-warning">Mon <input value=false type="checkbox"
+                                                                        th:field="*{availableMonday}"/></div>
+                        <div class="tag is-light is-warning">Tue <input value=false type="checkbox"
+                                                                        th:field="*{availableTuesday}"/></div>
+                        <div class="tag is-light is-warning">Wed <input value=false type="checkbox"
+                                                                        th:field="*{availableWednesday}"/></div>
+                        <div class="tag is-light is-warning">Thu <input value=false type="checkbox"
+                                                                        th:field="*{availableThursday}"/></div>
+                        <div class="tag is-light is-warning">Fri <input value=false type="checkbox"
+                                                                        th:field="*{availableFriday}"/><br>
+                        </div>
+                        <div class="tag is-light is-warning">Sat <input value=false type="checkbox"
+                                                                        th:field="*{availableSaturday}"/></div>
+                        <div class="tag is-light is-warning">Sun <input value=false type="checkbox"
+                                                                        th:field="*{availableSunday}"/></p>
+                        </div>
+                    </div>
+                    <!--            <span class="error" th:if="${#fields.hasErrors('availableMonday')}"-->
+                    <!--                  th:errors="*{availableMonday}"></span>-->
+                    <!--            <span class="error" th:if="${#fields.hasErrors('availableTuesday')}"-->
+                    <!--                  th:errors="*{availableTuesday}"></span>-->
+                    <!--            <span class="error" th:if="${#fields.hasErrors('availableWednesday')}"-->
+                    <!--                  th:errors="*{availableWednesday}"></span>-->
+                    <!--            <span class="error" th:if="${#fields.hasErrors('availableThursday')}"-->
+                    <!--                  th:errors="*{availableThursday}"></span>-->
+                    <!--            <span class="error" th:if="${#fields.hasErrors('availableFriday')}"-->
+                    <!--                  th:errors="*{availableFriday}"></span>-->
+                    <!--            <span class="error" th:if="${#fields.hasErrors('availableSaturday')}"-->
+                    <!--                  th:errors="*{availableSaturday}"></span>-->
+                    <!--            <span class="error" th:if="${#fields.hasErrors('availableSunday')}"-->
+                    <!--                  th:errors="*{availableSunday}"></span>-->
+                    <div class="field is-grouped is-grouped-centered">
+                        <div class="control">
+                            <input class="button is-warning" type="submit" value="Agregar"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr />
     </div>
-    <hr/>
+    <hr />
 </div>
 </body>
 </html>

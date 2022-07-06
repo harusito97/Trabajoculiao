@@ -4,31 +4,57 @@
     <title>SmartOffer - Registro</title>
 </head>
 <body>
-<div id="form_container" layout:fragment="content">
-    <form th:action="@{/EditProfile}" th:object="${customerForm}" method="post">
-        <h2>
-            Editar Perfil
-        </h2>
-        <p class="left">Nombre:</p>
-        <input type="text" th:field="*{name}" size="25" maxlength="25"/><br>
-        <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-        <p class="left">Apellido:</p>
-        <input type="text" th:field="*{lastname}" size="25" maxlength="25"/><br>
-        <span class="error" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
-        <p class="left">Password:</p>
-        <input type="password" th:field="*{pwd}" size="25" maxlength="25"/><br>
-        <span class="error" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>
-        <p class="left">Rut:</p>
-        <input type="text" th:field="*{rut}" placeholder="12345678-9" size="12" maxlength="12"/><br>
-        <span class="error" th:if="${#fields.hasErrors('rut')}" th:errors="*{rut}"></span>
-        <p class="left">Telefono:</p>
-        <input type="text" th:field="*{phone}" size="9" maxlength="9"/><br>
-        <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
-        <p class="left">Email:</p>
-        <input type="text" th:field="*{email}" placeholder="example@example.com" size="128" maxlength="128"/><br>
-        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-        <input type="submit" value="Guardar"/>
-    </form>
+<div class="container" layout:fragment="content">
+    <div class="content">
+        <div class="columns is-centered">
+            <div class="column box is-half">
+                <h1>Editar Perfil</h1>
+                <hr />
+                <form th:action="@{/EditProfile}" th:object="${customerForm}" method="post">
+
+                    <div class="field">
+                        <label class="label">Nombre</label>
+                        <div class="control"><input class="input" type="text" th:field="*{name}" size="25" maxlength="25"/></div>
+                        <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Apellido</label>
+                        <div class="control"><input class="input" type="text" th:field="*{lastname}" size="25" maxlength="25"/></div>
+                        <span class="error" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control"><input class="input" type="password" th:field="*{pwd}" size="25" maxlength="25"/></div>
+                        <span class="error" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Rut</label>
+                        <div class="control"><input class="input" type="text" th:field="*{rut}" placeholder="12345678-9" size="12" maxlength="12"/></div>
+                        <span class="error" th:if="${#fields.hasErrors('rut')}" th:errors="*{rut}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Telefono</label>
+                        <div class="control"><input class="input" type="text" th:field="*{phone}" size="9" maxlength="9"/></div>
+                        <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control"><input class="input" type="text" th:field="*{email}" placeholder="example@example.com" size="128"
+                                                    maxlength="128"/></div>
+                        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                    </div>
+                    <div class="field is-grouped is-grouped-centered">
+                        <div class="action">
+                            <input class="button is-warning" type="submit" value="Guardar"/>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr />
 </div>
 </body>
 </html>

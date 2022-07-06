@@ -1,35 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>SmartOffer - Inicio</title>
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-<div id="main_container">
-    <div class="nav_container">
-        <nav id="index_menu">
-            <ul>
-                <li th:class="${activePage == 'Index'} ? 'nav-item active' : 'nav-item'">
-                    <a th:href="@{/}">Inicio</a>
-                </li>
-                <li th:class="${activePage == 'Login'} ? 'nav-item active' : 'nav-item'">
-                    <a th:href="@{/Login}">Iniciar Sesion</a>
-                </li>
-                <li th:class="${activePage == 'Aboutus'} ? 'nav-item active' : 'nav-item'">
-                    <a th:href="@{/Aboutus}">Sobre Nosotros</a>
-                </li>
-                <li th:class="${activePage == 'Contact'} ? 'nav-item active' : 'nav-item'">
-                    <a th:href="@{/Contact}">Contacto</a>
-                </li>
-                <li sec:authorize="hasAuthority('Admin')"
-                    th:class="${activePage == 'Register'} ? 'nav-item active' : 'nav-item'">
-                    <a th:href="@{/Register}">Admin</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+<div class="container">
+    <nav class="navbar">
+        <a class="navbar-item" th:href="@{/}">Inicio</a>
+        <a class="navbar-item" th:href="@{/Login}">Iniciar Sesion</a>
+        <a class="navbar-item" th:href="@{/Aboutus}">Sobre Nosotros</a>
+        <a class="navbar-item" th:href="@{/Contact}">Contacto</a>
+        <a sec:authorize="hasAuthority('Admin')" class="navbar-item" th:href="@{/Register}">Admin</a>
+    </nav>
+    <hr>
     <div layout:fragment="content"></div>
 </div>
 </body>

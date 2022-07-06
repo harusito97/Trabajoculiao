@@ -4,31 +4,58 @@
     <title>SmartOffer - Agregar Servicio</title>
 </head>
 <body>
-<div id="main_container" layout:fragment="content">
-    <h1>SMART OFFER APP - ADMIN</h1>
-    <hr/>
-    <div id="form_container">
-        <form th:action="@{/AddService}" th:object="${service}" method="post">
-            <h2>Agregar Servicio</h2>
-            <p class="left">Nombre:</p>
-            <input type="text" th:field="*{name}" maxlength="50" size="50"/><br>
-            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-            <p class="left">Dirección: </p>
-            <input type="text" th:field="*{address}" maxlength="50" size="50"/><br>
-            <span class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
-            <p class="left">Telefono: </p>
-            <input type="text" th:field="*{phone}" maxlength="9" size="9"/><br>
-            <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
-            <p class="left">Email: </p>
-            <input type="text" th:field="*{email}" maxlength="128" size="128"/><br>
-            <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-            <p class="left">Descripcion: </p>
-            <textarea maxlength="512" th:field="*{description}"></textarea><br>
-            <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-            <input type="submit" value="Agregar"/>
-        </form>
+<div class="container" layout:fragment="content">
+    <div class="content">
+        <div class="columns is-centered">
+            <div class="column is-half box">
+                <h1>Agregar Servicio</h1>
+                <hr/>
+                <form th:action="@{/EditService/{id}(id=${service.id})}" th:object="${service}" method="post">
+                    <div class="field">
+                        <label class="label">Nombre</label>
+                        <div class="control">
+                            <input class="input" type="text" th:field="*{name}" maxlength="50" size="50"/>
+                        </div>
+                        <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Dirección</label>
+                        <div class="control">
+                            <input class="input" type="text" th:field="*{address}" maxlength="50" size="50"/>
+                        </div>
+                        <span class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Telefono</label>
+                        <div class="control">
+                            <input class="input" type="text" th:field="*{phone}" maxlength="9" size="9"/>
+                        </div>
+                        <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <input class="input" type="text" th:field="*{email}" maxlength="128" size="128"/>
+                        </div>
+                        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label">Descripcion</label>
+                        <div class="control">
+                            <textarea class="input" maxlength="512" th:field="*{description}"></textarea>
+                        </div>
+                        <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                    </div>
+                    <div class="field is-grouped is-grouped-centered">
+                        <div class="control">
+                            <input class="button is-warning" type="submit" value="Agregar"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <hr/>
+    <hr />
 </div>
 </body>
 </html>

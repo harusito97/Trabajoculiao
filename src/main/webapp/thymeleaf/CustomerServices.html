@@ -4,49 +4,51 @@
     <title>SmartOffer - Mis Servicios</title>
 </head>
 <body>
-<div class="contact-container" layout:fragment="content">
-    <h2>My Services</h2>
-    <a th:href="@{'/AddService'}">Agregar Servicio</a>
-    <hr />
-    <table>
-        <thead>
-        <th> Servicio</th>
-        <th> Direccion</th>
-        <th> Email</th>
-        <th> Phone</th>
-        <th colspan="3"> Options</th>
-        </thead>
-        <tbody>
-        <tr th:if="${#lists.isEmpty(myservices)}">
-            <td>
-                No existe ningun servicio.
-            </td>
-        </tr>
-        <tr th:each="service : ${myservices}">
-            <td>
-                <a th:href="@{/ServiceDetails/{id}(id=${service.id})}" th:text="${service.name}"></a>
-            </td>
-            <td>
-                <span th:text="${service.address}"></span>
-            </td>
-            <td>
-                <span th:text="${service.email}"></span>
-            </td>
-            <td>
-                <span th:text="${service.phone}"></span>
-            </td>
-            <td>
-                <a th:text="Editar" th:href="@{/EditService/{id}(id=${service.id})}">Editar</a>
-            </td>
-            <td>
-                <a th:href="@{/AddPlan/{id}(id=${service.id})}">Add Plan</a>
-            </td>
-            <td>
-                <a th:href="@{/DeleteService/{id}(id=${service.id})}">Eliminar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="container box" layout:fragment="content">
+    <div class="content">
+        <h2>My Services</h2>
+        <a  class="button is-light is-primary"th:href="@{'/AddService'}">Agregar Servicio</a>
+        <hr />
+        <table class="table is-striped is-fullwidth">
+            <thead>
+            <th> Servicio</th>
+            <th> Direccion</th>
+            <th> Email</th>
+            <th> Phone</th>
+            <th colspan="3"> Options</th>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(myservices)}">
+                <td>
+                    No existe ningun servicio.
+                </td>
+            </tr>
+            <tr th:each="service : ${myservices}">
+                <td>
+                    <a th:href="@{/ServiceDetails/{id}(id=${service.id})}" th:text="${service.name}"></a>
+                </td>
+                <td>
+                    <span th:text="${service.address}"></span>
+                </td>
+                <td>
+                    <span th:text="${service.email}"></span>
+                </td>
+                <td>
+                    <span th:text="${service.phone}"></span>
+                </td>
+                <td>
+                    <a class="button is-light is-warning" th:text="Editar" th:href="@{/EditService/{id}(id=${service.id})}">Editar</a>
+                </td>
+                <td>
+                    <a class="button is-light is-primary" th:href="@{/AddPlan/{id}(id=${service.id})}">Add Plan</a>
+                </td>
+                <td>
+                    <a class="button is-light is-danger" th:href="@{/DeleteService/{id}(id=${service.id})}">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

@@ -4,11 +4,13 @@
   <title>SmartOffer - Contacto</title>
 </head>
 <body>
-<div class="contact-container" layout:fragment="content">
-  <h2>My Reports</h2>
-  <a th:href="@{/ReservationReport}">Reporte de reservas</a><hr/>
-  <a th:href="@{/VisitsReport}">Reporte de visitas</a><hr/>
-  <a th:href="@{/ServiceReport}">Reporte de servicio</a><hr/>
+<div class="container box" layout:fragment="content">
+  <div class="content">
+    <h2>My Reports</h2>
+    <a class="button is-danger" th:href="@{/ReservationReport}">Reporte de reservas</a>
+    <a class="button is-warning" th:href="@{/VisitsReport}">Reporte de visitas</a>
+    <a class="button is-link" th:href="@{/ServiceReport}">Reporte de servicio</a>
+  </div>
 </div>
 </body>
 </html>

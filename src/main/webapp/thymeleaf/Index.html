@@ -4,10 +4,26 @@
     <title>SmartOffer - Inicio</title>
 </head>
 <body>
-<div layout:fragment="content">
-    <h1>Bienvenido a SmartOffer</h1>
-    <h1><a th:href="@{/Login}">Iniciar Sesion</a></h1>
-    <h1><a sec:authorize="hasAuthority('Admin')" th:href="@{/Register}">Admin</a></h1>
+<div layout:fragment="content" class="container">
+    <div class="box">
+        <div class="content centered">
+            <h2>Bienvenido a SmartOffer</h2>
+            <div class="columns is-centered">
+                <div class="column is-narrow ">
+                    <a th:href="@{/Login}">
+                        <button class="button is-ligth is-warning"> Iniciar Sesion</button>
+                    </a>
+                </div>
+                <div class="column is-narrow">
+                    <a sec:authorize="hasAuthority('Admin')" th:href="@{/Register}">
+                        <button class="button is-ligth is-warning"> Admin</button>
+                    </a>
+                </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
 </div>
 </body>
 </html>

@@ -1,24 +1,42 @@
 <!DOCTYPE html>
-<html layout:decorate="~{loginLayout}">
+<html layout:decorate="~{Layout}">
 <head>
     <meta charset="UTF-8">
     <title>SmartOffer - Login</title>
 </head>
 <body>
 <div id="login-container" layout:fragment="content">
-    <h1>SmartOffer App - Log In</h1>
-    <hr/>
-    <div id="form_container">
-        <form th:action="@{/Login}" method="post">
-            <h2>Login</h2>
-            <hr/>
-            <div>
-                <p>Rut <input name="username" type="text" placeholder="12345678-9" maxlength="12"/></p>
-                <p>Password <input name="password" type="password" maxlength="25" x/></p>
+    <div class="content">
+        <div class="columns is-centered">
+            <div class="column box is-half">
+                <div id="form_container">
+                    <h2 class="title">SmartOffer App - Log In</h2>
+                    <hr/>
+                    <form th:action="@{/Login}" method="post">
+                        <div class="field">
+                            <label class="label">Rut</label>
+                            <div class="control">
+                                <input class="input" name="username" type="text" placeholder="12345678-9" maxlength="12"/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control">
+                                <input class="input" name="password" type="password" maxlength="25"/>
+                            </div>
+                        </div>
+                        <div class="field is-grouped is-grouped-centered">
+                            <div class="control">
+                                <input class="button is-warning" type="submit" value="Log In"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <input type="submit" value="Log In"/>
-        </form>
+        </div>
     </div>
+
+
     <hr/>
 </div>
 </body>
