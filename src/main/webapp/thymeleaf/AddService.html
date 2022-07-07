@@ -10,7 +10,7 @@
             <div class="column is-half box">
                 <h1>Agregar Servicio</h1>
                 <hr/>
-                <form th:action="@{/EditService/{id}(id=${service.id})}" th:object="${service}" method="post">
+                <form th:action="@{/AddService}" th:object="${service}" method="post">
                     <div class="field">
                         <label class="label">Nombre</label>
                         <div class="control">
