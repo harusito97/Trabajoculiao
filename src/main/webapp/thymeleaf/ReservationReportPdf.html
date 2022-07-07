@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html >
 <head>
-    <meta charset="UTF-8"/>
-    <title>SmartOffer - Reservation Report</title>
-    <link rel="stylesheet" href="/css/home.css"/>
+    <title>SmartOffer - Inicio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="../css/main.css" />
 </head>
 <body>
-<hr/>
-<div layout:fragment="content">
-    <h3>Reporte del periodo: <span th:text="${reportData.startDate}"></span> -- <span
-            th:text="${reportData.endDate}"></span></h3>
-    <hr/>
-    <div th:each="servicio : ${reportData.getServiceReports()}">
-        <h3 th:text="${servicio.name}"></h3>
-        <table>
+<div class="container box" layout:fragment="content">
+    <div class="content">
+        <div class="tag is-warning">Reporte del periodo: <span th:text="${reportData.startDate}"></span> -- <span th:text="${reportData.endDate}"></span></div>
+        <table class="table is-striped is-fullwidth">
             <thead>
             <tr>
                 <th>Servicio</th>
@@ -23,8 +18,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td th:text="${servicio.name}"></td>
+            <tr th:each="servicio : ${reportData.getServiceReports()}">
+                <th th:text="${servicio.name}"></th>
                 <td th:text="${servicio.reservas}"></td>
                 <td th:text="${servicio.plata}"></td>
             </tr>
@@ -46,6 +41,8 @@
         </table>
         <hr/>
     </div>
+
 </div>
 </body>
 </html>
+

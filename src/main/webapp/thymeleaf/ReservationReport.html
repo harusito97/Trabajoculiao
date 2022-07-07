@@ -4,40 +4,43 @@
     <title>SmartOffer - Inicio</title>
 </head>
 <body>
-<div layout:fragment="content">
-    <h3>Reporte del periodo: <span th:text="${reportData.startDate}"></span> -- <span th:text="${reportData.endDate}"></span></h3>
-    <table>
-        <thead>
-        <tr>
-            <th>Servicio</th>
-            <th>Reservas</th>
-            <th>Dinero Obtenido</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="servicio : ${reportData.getServiceReports()}">
-            <td th:text="${servicio.name}"></td>
-            <td th:text="${servicio.reservas}"></td>
-            <td th:text="${servicio.plata}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <table>
-        <thead>
-        <tr>
-            <th>Total Reservas</th>
-            <th>Total Dinero Obtenido</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td th:text="${reportData.getReservastotal()}"></td>
-            <td th:text="${reportData.getPlatatotal()}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <hr/>
-    <a th:href="@{/ReservationReportPdf}">Generar PDF</a>
+<div class="container box" layout:fragment="content">
+    <div class="content">
+        <div class="tag is-warning">Reporte del periodo: <span th:text="${reportData.startDate}"></span> -- <span th:text="${reportData.endDate}"></span></div>
+        <table class="table is-striped is-fullwidth">
+            <thead>
+            <tr>
+                <th>Servicio</th>
+                <th>Reservas</th>
+                <th>Dinero Obtenido</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="servicio : ${reportData.getServiceReports()}">
+                <th th:text="${servicio.name}"></th>
+                <td th:text="${servicio.reservas}"></td>
+                <td th:text="${servicio.plata}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+            <tr>
+                <th>Total Reservas</th>
+                <th>Total Dinero Obtenido</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${reportData.getReservastotal()}"></td>
+                <td th:text="${reportData.getPlatatotal()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <a class="button is-primary" th:href="@{/ReservationReportPdf}">Generar PDF</a>
+    </div>
+
 </div>
 </body>
 </html>

@@ -2,13 +2,16 @@ package com.pichulacorp.integracion.Controller
 
 import com.pichulacorp.integracion.CustomerDetails
 import com.pichulacorp.integracion.Entity.Service
+import com.pichulacorp.integracion.NavigationController
 import com.pichulacorp.integracion.Reporting.ReportBuilder
 import com.pichulacorp.integracion.Service.ServiceService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.util.Pair
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.WebContext
 import org.xhtmlrenderer.pdf.ITextRenderer
@@ -22,6 +25,14 @@ import javax.servlet.http.HttpServletResponse
 @Controller
 class ReportController {
 
+
+    @Autowired
+    private val navController: NavigationController? = null
+
+    @ModelAttribute("pages")
+    fun pages(@AuthenticationPrincipal customer: CustomerDetails?): List<Pair<String?, String?>?>? {
+        return navController!!.pages(customer)
+    }
     @Autowired
     lateinit var serviceService: ServiceService
 

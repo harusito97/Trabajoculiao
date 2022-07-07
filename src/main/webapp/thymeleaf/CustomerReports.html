@@ -6,10 +6,26 @@
 <body>
 <div class="container box" layout:fragment="content">
   <div class="content">
-    <h2>My Reports</h2>
-    <a class="button is-danger" th:href="@{/ReservationReport}">Reporte de reservas</a>
-    <a class="button is-warning" th:href="@{/VisitsReport}">Reporte de visitas</a>
-    <a class="button is-link" th:href="@{/ServiceReport}">Reporte de servicio</a>
+    <h2>Mis Reportes</h2>
+    <article class="message is-danger">
+      <div class="message-header">
+        <a class="button is-danger" th:href="@{/ReservationReport}">Reporte de reservas</a>
+      </div>
+      <div class="message-body">
+        Indica ingresos obtenidos por cada uno de los servicios y una suma total de todas las ganancias.
+      </div>
+    </article>
+    <article class="message is-link">
+      <div class="message-header">
+        <a class="button is-link" th:href="@{/ServiceReport}">Reporte de servicio</a>
+      </div>
+      <div class="message-body">
+        Indica las compras y recaudacion que obtuvo cada plan de un servicio en concreto.
+      </div>
+    </article>
+
+<!--    <a class="button is-warning" th:href="@{/VisitsReport}">Reporte de visitas</a>-->
+
   </div>
 </div>
 </body>

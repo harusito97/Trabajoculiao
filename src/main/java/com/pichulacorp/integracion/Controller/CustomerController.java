@@ -5,20 +5,25 @@ import javax.validation.Valid;
 
 import com.pichulacorp.integracion.CustomerDetails;
 import com.pichulacorp.integracion.CustomerForm;
+import com.pichulacorp.integracion.NavigationController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.util.Pair;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.pichulacorp.integracion.Entity.Customer;
 import com.pichulacorp.integracion.Service.CustomerService;
+
+import java.util.List;
 
 @Controller
 public class CustomerController {
@@ -27,6 +32,13 @@ public class CustomerController {
     private final Logger logger = LoggerFactory.getLogger(CustomerController.class);
     @Autowired
     private CustomerService service;
+    @Autowired
+    private NavigationController navController;
+
+    @ModelAttribute("pages")
+    public List<Pair<String, String>> pages(@AuthenticationPrincipal CustomerDetails customer) {
+        return navController.pages(customer);
+    }
 
     @PostMapping( "/Register")
     public String addCustomer(Model model, @Valid CustomerForm customerForm, BindingResult result) {

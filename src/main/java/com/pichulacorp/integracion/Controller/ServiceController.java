@@ -3,29 +3,37 @@ package com.pichulacorp.integracion.Controller;
 import com.pichulacorp.integracion.CustomerDetails;
 import com.pichulacorp.integracion.Entity.Customer;
 import com.pichulacorp.integracion.Entity.Service;
+import com.pichulacorp.integracion.NavigationController;
 import com.pichulacorp.integracion.Service.ServiceService;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.util.Pair;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
 public class ServiceController {
 
+
+    @Autowired
+    private NavigationController navController;
+
+    @ModelAttribute("pages")
+    public List<Pair<String, String>> pages(@AuthenticationPrincipal CustomerDetails customer) {
+        return navController.pages(customer);
+    }
     private final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired

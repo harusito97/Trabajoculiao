@@ -10,13 +10,7 @@
 <body>
 <div class="container">
     <nav class="navbar">
-        <a class="navbar-item" th:href="@{/CustomerIndex}">Resumen</a>
-        <a class="navbar-item" th:href="@{/CustomerServices}">Mis Servicios</a>
-        <a class="navbar-item" th:href="@{/CustomerReports}">Mis Reportes</a>
-        <a class="navbar-item" th:href="@{/CustomerProfile}"
-           th:text="${customer.getName()}+' '+${customer.getLastname()}"></a>
-        <a class="navbar-item" th:href="@{/Logout}">Cerrar Sesion</a>
-        <a class="navbar-item" th:if="${customer.role=='ROLE_Admin'}" th:href="@{/Register}">Ingreso Admin</a>
+        <a class="navbar-item" th:each="page: ${pages}" th:href="@{${page.getSecond()}}">[[${page.getFirst()}]]</a>
     </nav>
     <hr/>
     <div layout:fragment="content"></div>

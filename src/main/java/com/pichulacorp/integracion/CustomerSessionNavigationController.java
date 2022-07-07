@@ -10,37 +10,37 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CustomerSessionNavigationController {
-
-    @Autowired
-    private ServiceService myservice;
-
-    @GetMapping("/CustomerIndex")
-    public String getCustomerIndex(Model model, @AuthenticationPrincipal CustomerDetails customer){
-        model.addAttribute("customer",customer.getCustomer());
-        model.addAttribute("activePage","CustomerIndex");
-        model.addAttribute("myservices", myservice.getAllMyServices(customer.getCustomer()));
-        return "CustomerIndex";
-    }
-
-    @GetMapping("/CustomerServices")
-    public String getCustomerServices(Model model, @AuthenticationPrincipal CustomerDetails customer){
-        model.addAttribute("customer",customer.getCustomer());
-        model.addAttribute("myservices", myservice.getAllMyServices(customer.getCustomer()));
-        model.addAttribute("activePage","CustomerServices");
-        return "CustomerServices";
-    }
-
-    @GetMapping("/CustomerReports")
-    public String getCustomerReports(Model model, @AuthenticationPrincipal CustomerDetails customer){
-        model.addAttribute("customer",customer.getCustomer());
-        model.addAttribute("activePage","CustomerReports");
-        return "CustomerReports";
-    }
-
-    @GetMapping("/CustomerProfile")
-    public String getCustomerProfile(Model model, @AuthenticationPrincipal CustomerDetails customer){
-        model.addAttribute("customer",customer.getCustomer());
-        model.addAttribute("activePage","CustomerProfile");
-        return "CustomerProfile";
-    }
+//
+//    @Autowired
+//    private ServiceService myservice;
+//
+//    @GetMapping("/CustomerIndex")
+//    public String getCustomerIndex(Model model, @AuthenticationPrincipal CustomerDetails customer){
+//        model.addAttribute("customer",customer.getCustomer());
+//        model.addAttribute("activePage","CustomerIndex");
+//        model.addAttribute("myservices", myservice.getAllMyServices(customer.getCustomer()));
+//        return "CustomerIndex";
+//    }
+//
+//    @GetMapping("/CustomerServices")
+//    public String getCustomerServices(Model model, @AuthenticationPrincipal CustomerDetails customer){
+//        model.addAttribute("customer",customer.getCustomer());
+//        model.addAttribute("myservices", myservice.getAllMyServices(customer.getCustomer()));
+//        model.addAttribute("activePage","CustomerServices");
+//        return "CustomerServices";
+//    }
+//
+//    @GetMapping("/CustomerReports")
+//    public String getCustomerReports(Model model, @AuthenticationPrincipal CustomerDetails customer){
+//        model.addAttribute("customer",customer.getCustomer());
+//        model.addAttribute("activePage","CustomerReports");
+//        return "CustomerReports";
+//    }
+//
+//    @GetMapping("/CustomerProfile")
+//    public String getCustomerProfile(Model model, @AuthenticationPrincipal CustomerDetails customer){
+//        model.addAttribute("customer",customer.getCustomer());
+//        model.addAttribute("activePage","CustomerProfile");
+//        return "CustomerProfile";
+//    }
 }
