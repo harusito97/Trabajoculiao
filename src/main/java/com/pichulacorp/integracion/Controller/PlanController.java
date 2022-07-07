@@ -63,7 +63,7 @@ public class PlanController {
         }
         try{
             service.savePlan(plan, parentService);
-            return "redirect:/CustomerServices";
+            return "redirect:/ServiceDetails/"+parentService.getId();
         }catch (DataAccessException e){
             logger.error("Se fue a la chucha", e);
             model.addAttribute("error", e.getMessage());
