@@ -3,6 +3,7 @@ package com.pichulacorp.integracion.Service;
 import com.pichulacorp.integracion.CustomerForm;
 import com.pichulacorp.integracion.Entity.Customer;
 import com.pichulacorp.integracion.Repository.CustomerRepository;
+import com.pichulacorp.integracion.Security.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ public class CustomerService {
 
     public Customer saveCustomer(CustomerForm customerForm) {
         Customer customer = toCustomer(customerForm);
+        customer.setRole(Roles.Full);
         return repository.save(customer);
     }
 
