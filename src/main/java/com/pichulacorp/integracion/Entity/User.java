@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "User")
+@Table(name = "\"User\"")
 public class User {
 
     @Id
