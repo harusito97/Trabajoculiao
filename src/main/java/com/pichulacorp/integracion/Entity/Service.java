@@ -71,7 +71,7 @@ public class Service {
     @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE)
     private List<Reservation> reservation = new ArrayList<>();
 
-    @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Plan> plan = new ArrayList<>();
 
     @OneToMany(mappedBy = "service", cascade = CascadeType.REMOVE)

@@ -45,55 +45,6 @@ public class ServiceService {
         return repository.findByOwnerRut(rut);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public List<Service> getServices(){
         return repository.findAll();
     }
@@ -108,7 +59,7 @@ public class ServiceService {
 
     @Transactional
     public void deleteService(Service service) {
-        repository.deleteById(service.getId());
+        repository.delete(service);
     }
 
     public List<Plan> getServicePlans(int id) {
